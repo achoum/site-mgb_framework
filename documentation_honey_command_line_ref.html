@@ -1,0 +1,178 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a class='selected' href='documentation_honey_command_line_ref.html'>Command line reference</a></li><ul></ul><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Honey | Command line reference</h1><p>Honey command line syntax is <i>honey {source code} [options]</i> or <i>honey --tool:{tool name} {input file}
+        [options]</i>.
+<p>
+
+<p>Possible options for script are:</p>
+
+<ul>
+
+    <li>
+        <span class="cmd">--input {dataset file}</span> : Provide an input dataset. If several datasets are provided
+        with <span class="cmd">--input</span>, the datasets will be merged before the script execution.
+        Input datasets can also be provided with the <span class="cmd">@data</span> command inside of the script. Note
+        that <span class="cmd">--input</span> and <span class="cmd">@data</span> cannot be mixed..
+    </li>
+
+    <li>
+        <span class="cmd">--define {key}:{value}</span> : Define a non-signal variable that will then be accessible from
+        within the script.".
+    </li>
+
+    <li>
+        <span class="cmd">--mode [STATIC|STREAMING|ONLINE]</span> : Define the execution mode of the program
+        (Default:STATIC).
+        This parameter can also be overide by the <span class="cmd">@mode</span> function inside of the program.".
+    </li>
+
+    <li>
+        <span class="cmd">--verbose [NONE|SMALL|NORMAL|FULL|TRACE]</span> : This parameter defines how much information
+        about the script execution is displayed on the console.
+        The default value is NORMAL.
+        The NONE value ensures that nothing is printing on the console (standart output) except for the command \"cout\"
+        that outputs signal on the console.
+        This option is similar to the function <span class="cmd">@verbose</span>.
+    </li>
+
+    <li>
+        <span class="cmd">--graph</span> Export a picture representing a graph of the script using GraphViz.:
+    </li>
+
+    <li>
+        <span class="cmd">--final_pause</span> At the end of the script, wait for the user to press "return" on the
+        keyboard before quitting honey.:
+    </li>
+
+    <li>
+        <span class="cmd">--final_beep</span> Emit a "beep" sound at the end of the script execution.:
+    </li>
+
+    <li>
+        <span class="cmd">--error_pause</span> In case of an error, wait for the user to press "return" on the keyboard
+        before quitting honey.:
+    </li>
+
+    <li>
+        <span class="cmd">--dontrun</span> Only compile the script without trying to executing it. This is mostly useful
+        to check script syntax or to export it into a picture.:
+    </li>
+
+    <li>
+        <span class="cmd">--filearg {file}</span> : Read the file and interpret its content as the command line
+        arguments.
+    </li>
+
+</ul>
+
+<p>Available tools are:</p>
+
+<ul>
+
+    <li>
+        <span class="cmd">--tool:tobin {input dataset}</span> : Load and save the input dataset in the binary format.
+    </li>
+
+    <li>
+        <span class="cmd">--tool:toevt {input dataset}</span> : Load and save the input dataset in the text format.
+    </li>
+
+    <li>
+        <span class="cmd">--tool:display {input dataset}</span> : Load the input dataset and display an interactive
+        console interval to explore the available channels.
+    </li>
+
+    <li>
+        <span class="cmd">--tool:import {configuration file}</span> : Import a csv using the <a
+            href="documentation_honey_importer">dirty csv importer</a>.
+    </li>
+
+</ul>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

@@ -1,0 +1,134 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a class='selected' href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_eventviewer_beginnersGuide.html#overview'>Overview</a><li class='subsublevel'><a class='subsublevel' href='documentation_eventviewer_beginnersGuide.html#gettingHoney'>Getting Event Viewer</a><li class='subsublevel'><a class='subsublevel' href='documentation_eventviewer_beginnersGuide.html#needHelp'>Need help?</a></ul><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Event Viewer | Beginner guide</h1><h2 id="overview">Overview</h2>
+
+<p>Event Viewer is powerful visualizing tool for time series, time sequences and other symbolic or scalar temporal
+	datasets.
+	Event Viewer has a lot of unique features which allow for a powerful understanding of data.
+	Event Viewer can also be used to study static data and real time data flows.
+	Finally, Event Viewer can interact seamlessly with Honey and allow quick prototyping analysis.
+<p>
+
+<p style="text-align: center;">
+	<img width=500 src="documentation/eventviewer/pictures/intro.png">
+</p>
+
+<p>Some of Event Viewer's notable features are:</p>
+
+<ul>
+	<li>Display symbolic and numerical multivariate time sequences and time series.</li>
+	<li>Fully customizable display (drawing type, colors, styles, legend, etc.)</li>
+	<li>Efficient navigation (camera moving and zooming).</li>
+	<li>Handle huge dataset with massive number of records and/or dimensions.</li>
+	<li>Support Titarl CSV, EVT and BIN files. With the help of Honey script, Event Viewer can load any CSV file.</li>
+	<li>Can load "directories" (i.e. load each file of a directory.)</li>
+	<li>Allow visualization of real-time data flow.</li>
+	<li>Export plot in SVG and PNG formats.</li>
+	<li>Placement of annotations.</li>
+	<li>Support "anchors" to save the temporal location of interesting phenomena.</li>
+	<li>Can export video simulating real time data flow.</li>
+</ul>
+
+<h2 id="gettingHoney">Getting Event Viewer</h2>
+
+<p>Event Viewer is available on the <a href="download_eventviewer#eventviewer">download page</a>.</p>
+
+<p>On Window, Event Viewer can be configured to automatically open CSV and SCE (event viewer configuration file) by
+	answering the "Open With" question with the "EventViewer.bat" file.</p>
+
+<p>An examples of Event Viewer plot is available in the "demo" directory.</p>
+
+<p>Next, we invite you to read the <a href="documentation_eventviewer_tutorial">Event Viewer's tutorial</a>.</p>
+
+
+<h2 id="needHelp">Need help?</h2>
+
+<p>In case of questions or problems, contact me at .</p>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

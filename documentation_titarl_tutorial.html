@@ -1,0 +1,1029 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a class='selected' href='documentation_titarl_tutorial.html'>Tutorial</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#introduction'>Introduction</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#rules'>Rules [quick reminder]</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#setupData'>Preparing the dataset</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#learnRules'>Learning rules</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#displayRules'>Displaying and interpreting rules</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#evalRules'>Evaluating rules</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#applyRules'>Applying rules</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#mergingRules'>Merging and applying rules together</a><li class='subsublevel'><a class='subsublevel' href='documentation_titarl_tutorial.html#evalPredictions'>Evaluating predictions</a></ul><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Titarl | Tutorial</h1><h2 id="introduction">Introduction</h2>
+
+<p>Titarl is a Data Mining algorithm designed to extract and apply temporal rules from/on symbolic time series and time
+	sequences (SSTS).
+	Titarl rules can be directly interpreted (through the help of the Rule Viewer), used for predictions/detection, or
+	used as input of other analysis.
+	The Titarl binary also include tools to automate the cross-validation evaluation of learned rules as well as the
+	implementation of various other Machine Learning algorithms (for comparison).
+<p>
+
+<p>Before reading this tutorial on how to use Titarl, it is strongly recommended for you to read the <a
+		href="/titarl_tutorial" target="_blank">interactive Titarl description</a>.
+	This document will give you the basic understanding of the goal of Titarl.</p>
+
+<p>Titarl can used in two different ways.
+	The first way is to use Titarl with the command line (e.g. <span class="cmd">--learn</span>, <span
+		class="cmd">--apply</span>, <span class="cmd">--display</span>, <span class="cmd">--eval</span>).
+	This solution is simple but becomes fastidious, when changing and comparing Titarl parameters, when applying
+	cross-validation, or to stop and resume runs.
+	The second solution is to use the Titarl Experiment Manager that will calls Titarl command line itself. The second
+	solution is preferable for more complex analysis.</p>
+
+<p>The following sections shows how to use Titarl without the experiment manager. Once you have read this document, you
+	will be encouraged to read the <a href="documentation_titarl_experimentManager">Experiment Manager tutorial</a>.</p>
+
+This document supposes that you are familiar with the <a href="documentation_honey_tutorial">SSTS dataset format</a>
+described in the Honey documentation.
+
+<h2 id="rules">Rules [quick reminder]</h2>
+
+<p>A Titarl rule is composed of two parts: the condition (or body), and the head. When the condition of a rule is
+	applicable at time t, the rule is "activated" and it generates a prediction.
+	A prediction is defined by an event (i.e. The predicted event) and the approximate time of this event represented by
+	a density distribution.
+	The temporal location of the prediction of a rule is determined by the time t as well as the information contained
+	in the head of the rule (see later).</p>
+
+<p>
+	The body of a titarl rules is a tree of conditions on event, conditions on scalar and conditions on states.
+	Each condition can be positive or negative.
+	To be valid, a Titarl rule should at least contains a positive condition on an event.
+	This last constraint ensure that a Titarl rule can only be applied a finite number of time on a finite dataset.
+	Titarl also cannot learn rules with condition (positive or negative) attached and dependent to a negative condition
+	because it would violate the support constraint required for the apriori pruning used by Titarl.
+</p>
+
+<p>
+	The head of a titarl rule is an event as well as the density distribution of the time difference between the rule
+	head and the rule body.
+	Note that a Titarl rule can only predict events (and not the states or the scalar).
+	However is generally possible to convert a state or a scalar into an event, for example by generating change point
+	events.
+</p>
+
+<p>Read the <a href="/titarl_tutorial" target="_blank">interactive Titarl
+		description</a> for more details on the Titarl rules definition.</p>
+
+
+<p>
+	Here are some examples of rules that Titarl can learn:
+<ul>
+	<li>If there is an event A at time t, therefore there will be an event B between t+10 and t+20 (90% confidence).
+	</li>
+	<li>If there is an event A at time t and the value of sensor S is < 5 at time t, therefore there will be an event B
+			between t+10 and t+20 (90% confidence).</li>
+	<li>If there is an event A at time ta, and if there is an event B at time tb between time ta+5 and ta+8, therefore
+		there will be an event C between tb+10 and t+20 (90% confidence).</li>
+	<li>If there is an event A at time ta, and if there is NOT an event B at time tb between time ta+5 and ta+8,
+		therefore there will be an event C between ta+10 and t+20 (90% confidence).</li>
+	<li>If there is an event A at time ta, and if there is an event B at time tb between time ta+5 and ta+8, and if the
+		value of the sensor S is >5.2, therefore there will be an event C between ta+10 and t+20 (90% confidence).</li>
+</ul>
+</p>
+
+<h2 id="setupData">Preparing the dataset</h2>
+
+<p>The Titarl algorithm takes as input a single SSTS stored as a single or a collection of .csv, .evt, .bin or .sevt
+	file.
+	If the dataset describes the behavior of several independent entities each stored in a different dataset, the
+	dataset can be aggregate (while still keeping their independence) using a .sevt file (see <a
+		href="documentation_honey_tutorial#inputAndOutputFormat">Input file formats</a>).
+	The .sevt file will "glue" the records of each entities one after the other while making sure to separated them
+	enough for Titarl so know they are independent.</p>
+
+<p>A typical example of prepared dataset for Titarl could be:</p>
+<ul>
+	<li>entity_1.evt</li>
+	<li>entity_2.evt</li>
+	<li>entity_3.evt</li>
+	<li>all_entities.sevt</li>
+</ul>
+
+<p>With the "all_entities.sevt" file content been:</p>
+
+<div class="example">
+	<div class="title">
+		all_entities.sevt
+	</div>
+	<div class="content">
+		minoffset 3600<br />
+		<br />
+		sequence 1<br />
+		dataset entity_1.csv<br />
+		flush<br />
+		<br />
+		sequence 2<br />
+		dataset entity_2.csv<br />
+		flush<br />
+		<br />
+		sequence 3<br />
+		dataset entity_3.csv<br />
+		flush<br />
+	</div>
+</div>
+
+<p>When loaded, this .sevt file will be read as a single SSTS organized as follow:</p>
+
+<p style="text-align: center;">
+	<img src="documentation/titarl/pictures/titarl_trick.png">
+</p>
+
+<p>For more details, you can read the section <a href="documentation_honey_tutorial#handlingEntities">Handling
+		entities</a> in the Honey tutorial.</p>
+
+<p>
+	In case your dataset is not represented as a Titarl .csv, .evt, .bin or .sevt format.
+	You can use the <a href="documentation_honey_command">Honey importing tool</a> to import and convert the dataset so
+	to be readable by Titarl.
+	So that in case of space dataset with large number of entities (several millions), it is very inefficient to store
+	the data of each entity in a separate file.
+	The honey importing tool proposes a solution for this case.
+</p>
+
+<p>The Titarl algorithm considers three types of signal: events (symbolic time sequence), scalar (e.i. numerical time
+	sequence) and status (e.i. numerical time sequence with a value of 0 or 1 only).
+<p>
+
+<p>Titarl does not assume any naming conversion on the channels.
+	However, since Titarl can select set of channels by applying a regular expression on the channel names, it is
+	recommended to the user to use a conversion.
+	As an example, the name of all event channels could start with "event.", the name of all scalar channels could start
+	with "scalar.", and the name of all state channels can start with "state.".
+</p>
+
+<p>When applying Titarl, you might want to evaluate the quality of the rules with a cross-validation protocol. To do so,
+	you will need to "split" your dataset into folds.
+	While this can be done by hand, you can also run the command <span class="cmd">titarl --splitdataset [dataset path]
+		--splits [number of splits] --constraint SAME_DURATION --output data</span>. This command will split your
+	dataset into disjoins sub-datasets that can be directory used for cross-validation.</p>
+
+<h2 id="learnRules">Learning rules</h2>
+
+<p>
+	The configuration of the Titarl algorithm is done with a .xml file. Once this file is created, the learning can be
+	started with the command <span class="cmd">Titarl --learn [path config xml file]</span>.
+</p>
+
+<p>Here is an example of Titarl configuration file</p>
+
+<div class="example">
+	<div class="content" style="font-size: 90%; line-height:1;">
+		<xmp>
+			<config>
+				<option name="saveRules_new" value="rules.xml" />
+
+				<data path="data_0.bin" type="train" />
+				<data path="data_1.bin" type="validate" />
+
+				<outputEvent>
+					<predicate name="event.e1" />
+				</outputEvent>
+
+				<inputEvent>
+					<predicate name="event.e[2-9]" />
+				</inputEvent>
+
+				<inputScalar>
+					<predicate name="scalar\..*" />
+				</inputScalar>
+
+				<option name="threads" value="-1" />
+				<option name="sub_threads" value="5" />
+				<option name="debugLevel" value="1" />
+
+				<option name="numCase" value="40" />
+				<option name="maxPast" value="-20" />
+				<option name="maxFuture" value="20" />
+				<option name="histogram" value="Unif" />
+
+				<option name="negation" value="1" />
+				<option name="allowNonConnextCondition" value="0" />
+
+				<option name="maxPValue" value="1" />
+				<option name="maxConditions" value="5" />
+				<option name="minConfidence" value="0.04" />
+				<option name="minCoverage" value="0.04" />
+				<option name="minNumberOfUse" value="10" />
+
+				<option name="maxCreatedRules" value="30" />
+				<option name="maxTimeAfterInit" value="20" />
+
+				<option name="intermediatesmoothing" value="0" />
+				<option name="finalsmoothing" value="0" />
+				<option name="division" value="1" />
+
+				<option name="maxTests" value="5000" />
+				<option name="maxEvauations" value="5000" />
+
+			</config>
+		</xmp>
+	</div>
+</div>
+
+<p>
+	The Titarl configuration file contains six types of xml anchors:
+</p>
+
+<ul>
+	<li><b>option</b> : Define the value for a parameter with a pair key/value.
+		<ul>
+			<li>
+				name :
+				name of the option (see table below).
+			</li>
+			<li>
+				value :
+				Value of the option (see table below).
+			</li>
+		</ul>
+	</li>
+	<li><b>data</b> : Define the location of the training dataset.
+		<ul>
+			<li>
+				path :
+				Input dataset path.
+			</li>
+			<li>
+				type :
+				Usage of the dataset. Can be "train" or "validate".
+			</li>
+		</ul>
+	</li>
+	<li><b>outputEvent</b>, <b>inputEvent</b>, <b>inputState</b> and <b>inputScalar</b> : Define the channels to use as
+		output (i.e. to predict), input events, input state and input scalar.
+		<ul>
+			<li>
+				predicate | name :
+				Regular expression filtering the channel names.
+			</li>
+		</ul>
+	</li>
+</ul>
+
+<p>Most <i>option</i> parameters are optional. If not specified, a parameter will be assigned to a default value.</p>
+
+<p>The supported parameters for the <i>option</i> anchor are:</p>
+
+<!-- (.*)\r\n(.*)\r\n(.*)\r\n\r\n  -->
+<!-- <tr><td>$1</td><td>$3</td><td>$2</td></tr>\r\n  -->
+<table class="titarlParams">
+
+	<tr>
+		<th>
+			Parameter
+		</th>
+		<th style="width:100px">
+			Default value
+		</th>
+		<th>
+			Description
+		</th>
+	</tr>
+
+	<tr>
+		<td>saveRules_new</td>
+		<td></td>
+		<td>The path to save the rules.</td>
+	</tr>
+	<tr>
+		<td>threads</td>
+		<td>1</td>
+		<td>Number of threads used in the outer loop.</td>
+	</tr>
+	<tr>
+		<td>sub_threads</td>
+		<td>-1</td>
+		<td>Number of threads used in the inner loop.</td>
+	</tr>
+	<tr>
+		<td>debugLevel</td>
+		<td>1</td>
+		<td>Integer number representing the amount of details displayed about the rule extraction.</td>
+	</tr>
+	<tr>
+		<td>numCase</td>
+		<td>20</td>
+		<td>Number of bins used for the histogram used to represent the density estimation of the time difference
+			between the rule's body and rule's head.</td>
+	</tr>
+	<tr>
+		<td>maxPast</td>
+		<td>-100</td>
+		<td>Minimum time difference between the rule body and the predicted event.</td>
+	</tr>
+	<tr>
+		<td>maxFuture</td>
+		<td>100</td>
+		<td>Maximum time difference between the rule body and the predicted event.</td>
+	</tr>
+	<tr>
+		<td>histogram</td>
+		<td>Unif</td>
+		<td>Distribution of the histogram bins density estimation of the time difference between the rule's body and
+			rule's head. Can be "Unif", "Log, "InvLog" or "CenterLog".</td>
+	</tr>
+	<tr>
+		<td>histoLogFactor</td>
+		<td>70</td>
+		<td>Factor parameters for the distribution of the histogram bins for types "Log, "InvLog" or "CenterLog".</td>
+	</tr>
+	<tr>
+		<td>numCaseCond</td>
+		<td>numCase</td>
+		<td>Number of bins used to represent time constraints.</td>
+	</tr>
+	<tr>
+		<td>maxPastCond</td>
+		<td>maxPast</td>
+		<td>Minimum time difference between two events in the rule condition.</td>
+	</tr>
+	<tr>
+		<td>maxFutureCond</td>
+		<td>maxFuture</td>
+		<td>Maximum time difference between two events in the rule condition.</td>
+	</tr>
+	<tr>
+		<td>negation</td>
+		<td>1</td>
+		<td>Does Titarl try to extract rules with negative components.</td>
+	</tr>
+	<tr>
+		<td>allowNonConnextCondition</td>
+		<td>1</td>
+		<td>Does Titarl try to extract conditions with disjointed time constraints. Enabling this parameter can lean to
+			strong over fitting is small datasets.</td>
+	</tr>
+	<tr>
+		<td>maxPValue</td>
+		<td>0.1 </td>
+		<td>Maximum P-value used for the rule pre-selection heuristic. This parameters can help Titarl handle dense
+			datasets. However, this parameter has been observed to hurt results in small datasets. Setting the maxPValue
+			to a value higher than 1 will disable the heuristic. </td>
+	</tr>
+	<tr>
+		<td>maxConditions</td>
+		<td>8</td>
+		<td>Maximum number of conditions for the rules.</td>
+	</tr>
+	<tr>
+		<td>minConfidence</td>
+		<td>-1</td>
+		<td>Minimum confidence for the rules.</td>
+	</tr>
+	<tr>
+		<td>minCoverage</td>
+		<td>-1</td>
+		<td>Minimum support/coverage for the rules. Since the Titarl algorithm uses an apriori pruning, this parameter
+			can impact significatively the performance of the algorithm.</td>
+	</tr>
+	<tr>
+		<td>minNumberOfUse</td>
+		<td>40</td>
+		<td>Minimum number of application of the rules.</td>
+	</tr>
+	<tr>
+		<td>maxCreatedRules</td>
+		<td>-1 : Disable</td>
+		<td>Maximum number of extracted rules. If more rules are extracted, only the most significant rules will be
+			retained.</td>
+	</tr>
+	<tr>
+		<td>maxTimeAfterInit</td>
+		<td>60</td>
+		<td>Duration of the training (in seconds) starting after the algorithm initialization.</td>
+	</tr>
+	<tr>
+		<td>intermediatesmoothing</td>
+		<td>1</td>
+		<td>"Smooth" the density distribution of the rule's head during the training.</td>
+	</tr>
+	<tr>
+		<td>finalsmoothing</td>
+		<td>0</td>
+		<td>"Smooth" the density distribution of the rule's head after the training.</td>
+	</tr>
+	<tr>
+		<td>division</td>
+		<td>1</td>
+		<td>Try (if significant) to splits rules' head density distributions. Enabling this parameter can capture more
+			specific rules. However, enabling this parameter is computationally expensive.</td>
+	</tr>
+	<tr>
+		<td>maxTests</td>
+		<td>-1</td>
+		<td>Maximum number of observations considered to estimate the maximum information gain of the rule's conditions.
+		</td>
+	</tr>
+	<tr>
+		<td>maxEvauations</td>
+		<td>-1</td>
+		<td>Maximum number of observations considered to estimate the confidence and support of the rules.</td>
+	</tr>
+	<tr>
+		<td>allowEventsNotInUnitRules</td>
+		<td>1</td>
+		<td>Allow rules' conditions to contains events not used in any other rules initial stage. In case of dataset
+			with high number of channels, enabling this heuristic (i.e. setting this</td>
+	</tr>
+	<tr>
+		<td>maxLoop</td>
+		<td>-1 : No limit.</td>
+		<td>Maximum number of algorithm loops.</td>
+	</tr>
+</table>
+
+<p>
+	Once Titarl is run with the <span class="cmd">--learn</span> command, the rules will be extracted and then saved in
+	the specified file.
+	Depending on the dataset and the parameters, Titarl can take from seconds to hours to run.
+	In case of large dataset, it is recommended to run Titarl with small value for the computationally expensive
+	parameters (e.g. max time, min coverage, max tests, max evaluation test, max conditions, etc.), and then to increase
+	their value when you are sure Titarl is correctly running.
+</p>
+
+<p>
+	If Titarl does not generate any rule, it is generally the case that you did not specify correctly the input channel
+	names, or that the parameters are too restrictive.
+	You can better understand the Titarl behavior (and the reason for the lack of rules), by increasing the debug
+	parameters, and looking at the logs.
+	Using the Event Viewer regular expression filtering in the Channel listing window is a good way to ensure the
+	regular expression filter of your Titarl configuration file are correct.
+</p>
+
+<p>
+	Before starting the rule learning, Titarl will try to detect error in the dataset and the parameters value. If an
+	error is detected, Titarl will stop and report the error to the user.
+	An example of common error for new users of Titarl is to build dataset where events are attached to values different
+	that 1.
+	1 is the default and the only supported value for an event. Titarl will stop if it detects event with other values.
+</p>
+
+<p>
+	Titarl cannot detect all possible errors, and a badly build dataset or a badly configured Titarl run might still
+	produce results that you wonï¿½t be able to interpret correctly.
+	Because of the nature of temporal dataset, is it easy to make "errors". Before running Titarl, you should make sure
+	the dataset looks what it should be with the help of Event Viewer.
+	I cannot emphasis this point enough.
+</p>
+
+<h2 id="displayRules">Displaying and interpreting rules</h2>
+
+<p>Once rules are extracted and stored in the file specified by the "saveRules_new" option, you can use Titarl to
+	visualize these rules.
+	To do so, execute the command <span class="cmd">titarl --display_interactive [rule path]</span>.
+	Alternatively, on Window, you can open the rule file with Titarl and selected the "dr) Display rules in http+html
+	server" option.</p>
+
+<p>Optionally, you can specify a dataset to load with the rule with the option --database : <span class="cmd">titarl
+		--display_interactive [rule path] --database [test dataset]</span>.
+	If a dataset is specified, the rules will be evaluated on this dataset.
+	Additionally, having a loaded dataset enables the possibility to run a greedy rule selection from the interface.
+</p>
+
+<p>
+	Titarl will load the rules, create a http server and open your default web browser at the address <a
+		href="http://localhost:2002/">http://localhost:2002/</a>.
+</p>
+
+<p>This page shows:</p>
+
+<ul>
+	<li>Several options to select the rules to display (e.g. min confidence, max conditions)</li>
+	<li>Options to sort the rules (e.g. weight of the confidence, support, etc.)</li>
+	<li>Various squatter plot graphics of the rules metrics.</li>
+	<li>Various statistics about the rules (e.g. distribution of number of conditions)</li>
+	<li>And finally, the rules.</li>
+</ul>
+
+<p>For each rule you can see.</p>
+
+<ul>
+
+	<li>
+		<b>id</b> :
+		The unique numerical id of the rule. If you know the id of a rule, you can then search for it in the filter box.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>similarId</b> :
+		Id of rules with similar structure. These rules have been pruned.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>base/valid/test</b> :
+		Evaluation metrics on various datasets.
+		Base is the training dataset. Valid is the validation dataset. And test (is available) is the test dataset.
+		The test dataset will be only available if you specify a dataset in the command line, or if you run the
+		evaluation command (see <a href="documentation_titarl_tutorial#evalRules">Evaluating rules</a>).
+		For each dataset, you can read:
+	</li>
+
+	<!-- ----------------- -->
+	<ul>
+
+		<li><b>confidence</b> :
+			Probability of a rule's prediction to be true i.e. probability of observing the rule's head given the rule's
+			body is true (when the rule fires).</li>
+
+		<li><b>conf. bounds 95% (binom)</b> :
+			95% confidence interval of the confidence.</li>
+
+		<li><b>locked confidence</b> :
+			Confidence of the rule when limiting its applications so a rule cannot fire twice at the same time or at
+			close times.</li>
+
+		<li><b>locked conf. bounds 95% (binom)</b> :
+			95% confidence interval of the locked confidence.</li>
+
+		<li><b>support (or recall)</b> :
+			Probability of a target event (event in the head of the rule) to be predicted by the rule i.e. probability
+			for the rule to fire given its head is true.</li>
+
+		<li><b>support. bounds 95% (binom)</b> :
+			95% confidence interval of the support.</li>
+
+		<li><b>#use</b> :
+			Number of time the rule has fire i.e. number of time the rule body is true.</li>
+
+		<li><b>locked #use</b> :
+			Number of time the rule has fire while making sure the rule does not fire twice close or at the same time.
+		</li>
+
+		<li><b>#events to predict</b> :
+			Number of target events in the dataset.</li>
+
+		<li><b>#events predicted</b> :
+			Number of target event actually predicted by the rule (at least once).</li>
+
+		<li><b>dataset range</b> :
+			Difference between the minimum and maximum times in the dataset.</li>
+
+		<li><b>pvalue (confBetterThanUnit)</b> :
+			P-Value associated with the test that the rule confidence is higher than the confidence of its further away
+			ancestor i.e. the confidence of a rule with only one element in the body.</li>
+
+		<li><b>pvalue (confBetterThanFather)</b> :
+			P-Value associated with the test that the rule confidence is higher than the confidence of its parent (if
+			any).</li>
+
+		<li><b>pvalue (confBetterThanRandom)</b> :
+			P-Value associated with the test that the rule confidence is higher than the confidence of a rule that would
+			do random predictions.</li>
+
+		<li><b>pvalue (supportBetterThanRandom)</b> :
+			P-Value associated with the test that the rule support is higher than the confidence of a rule that would do
+			random predictions.</li>
+
+		<li><b>pvalue (lockedconfBetterThanRandom)</b> :
+			P-Value associated with the test that the rule looked confidence is higher than the looked confidence of a
+			rule that would do random predictions.</li>
+
+		<li><b>rule range</b> :
+			Difference between the upper and lower bounds of the rule's head density distribution.</li>
+
+		<li><b>exp. confidence</b> :
+			Expected confidence of the rule if the rule's head and body were completely independent.</li>
+
+		<li><b>exp. support</b> :
+			Expected support of the rule if the rule's head and body were completely independent.</li>
+
+		<li><b>std. error exp. confidence</b> :
+			Standard deviation of the expected confidence of the rule if the rule's head and body were completely
+			independent.</li>
+
+		<li><b>std. error exp. support</b> :
+			Standard deviation of the expected support of the rule if the rule's head and body were completely
+			independent.</li>
+
+		<li><b>dist and density</b> :
+			Various experimental measures that have not been validated yet.</li>
+
+
+	</ul>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>parentId</b> :
+		Id of the parent rule i.e. rule from which this rule is derived.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>creation</b> :
+		Operation made on the parent rule to create this rule.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>number of condition</b> :
+		Number of elements in the rule body.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>score</b> :
+		Rule score as defined by the Score window.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>creation time</b> :
+		Time of extraction (in second) of the rule relative to the begining of the algorithm run.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>*text representation*</b> :
+		Textual representation of the rule.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>*graphical representation*</b> :
+		Graphical representation of the rule.
+		The rule head is on the right.
+		The rule body is on the left.
+		The orange historam represent the relative time distribution between the head and rule body.
+		The blue histograms (if any) represent the evaluated relative time distribution between the body elements.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>XML</b> :
+		Show the XML representation of the rule.
+	</li>
+
+	<!-- ====================================== -->
+
+	<li>
+		<b>Histograms</b> :
+		Show various versions of the orange histogram.
+	</li>
+
+	<!-- ====================================== -->
+
+</ul>
+
+<h2 id="evalRules">Evaluating rules</h2>
+
+<p>Evaluating rules on a dataset different from the one used for training is important.
+	In the last section, you saw how to display the evaluation the rule on a separate dataset.
+	The information about the evaluation of the rule can also be integrated into the rule file with the command
+	--filter.
+	The following command evaluates the rules on a dataset, and same the results in a new rule file: <span
+		class="cmd">titarl --filter rules.xml --database dataset.bin --output evaluated_rules.xml</span>.
+</p>
+
+<p>Evaluating rules and displaying them with the web interface is similar as directly displaying the rules in the web
+	interface while providing the test dataset.</p>
+
+<h2 id="applyRules">Applying rules</h2>
+
+<p>The following command applies the rules on a dataset and save the predictions into a file: <span class="cmd">titarl
+		--apply [rule path] --output [prediction path] --database [database path]</span> .</p>
+
+<p>Several options available to specify the format of the predictions :</p>
+
+<ul>
+
+	<li>
+		<b>--predFormat</b> :
+		What should be the time of each prediction. Possible values are:
+		<ul>
+
+			<li><b>interv</b> :
+				Interval begin-end of prediction.
+			</li>
+
+			<li><b>histo</b> :
+				Histogram representing the density distribution of the prediction time.
+			</li>
+
+			<li><b>envelope</b> :
+				Maximum (envelope) of all prediction histograms.
+			</li>
+
+			<li><b>center</b> :
+				Center of the prediction.
+			</li>
+
+			<li><b>trigger</b> :
+				Trigger (instant of activation) of the rule.
+			</li>
+
+			<li><b>endprediction</b> :
+				End of the prediction.
+			</li>
+
+			<li><b>trigger_mean</b> :
+				Mean trigger time (if prediction are merged).
+			</li>
+
+			<li><b>center_mean</b> :
+				Mean prediction center time (if prediction are merged).
+			</li>
+
+			<li><b>trigger_max</b> :
+				Max trigger time (if prediction are merged).
+			</li>
+
+			<li><b>center_max</b> :
+				Max prediction center time (if prediction are merged).
+			</li>
+
+			<li><b>trigger_weightedUse</b> :
+				Mean trigger time weighted by the number of use.
+			</li>
+
+			<li><b>center_weightedUse</b> :
+				Center prediction time weighted by the number of use.
+			</li>
+
+			<li><b>trigger_weightedSupport</b> :
+				Mean trigger time weighted by the number of rule's support.
+			</li>
+
+			<li><b>center_weightedSupport</b> :
+				Center prediction time weighted by rule's support.
+			</li>
+
+		</ul>
+	</li>
+
+	<li>
+		<b>--triggerScore</b> :
+		What should be the value of each prediction.
+		<ul>
+
+			<li><b>confidence</b> :
+				Rule's confidence.
+			</li>
+
+			<li><b>minConfidenceInterval90</b> :
+				90% lower bound of the confidence interval of the rule's confidence.
+			</li>
+
+			<li><b>minConfidenceInterval95</b> :
+				95% lower bound of the confidence interval of the rule's confidence.
+			</li>
+
+			<li><b>minConfidenceInterval98</b> :
+				98% lower bound of the confidence interval of the rule's confidence.
+			</li>
+
+			<li><b>support</b> :
+				Rule's support.
+			</li>
+
+			<li><b>confidencesupport</b> :
+				Rule's confidence time rule's support.
+			</li>
+
+			<li><b>rank</b> :
+				Rule's rank (Rules are sorted by rank by Titarl when they are extrated).
+			</li>
+
+			<li><b>matching</b> :
+				If the prediction is matched or not.
+			</li>
+
+			<li><b>lockedConfidence</b> :
+				Rule's locked confidence.
+			</li>
+
+			<li><b>minLockedConfidenceInterval95</b> :
+				95% lower bound of the confidence interval of the rule's looked confidence.
+			</li>
+
+			<li><b>confidence_valid</b> :
+				Rule's confidence on the validation dataset.
+			</li>
+
+			<li><b>minConfidenceInterval95_valid</b> :
+				95% lower bound of the confidence interval of the rule's confidence on the validation dataset.
+			</li>
+
+			<li><b>lockedConfidence_valid</b> :
+				Rule's looked confidence on the validation dataset.
+			</li>
+
+			<li><b>minLockedConfidenceInterval95_valid</b> :
+				95% lower bound of the confidence interval of the rule's looked confidence on the validation dataset.
+			</li>
+
+		</ul>
+	</li>
+
+	<li>
+		<b>--predictionHeader</b> :
+		What should be the symbol of each prediction.
+	</li>
+
+	<ul>
+
+		<li><b>none</b> :
+			Same as the predicted symbol.
+		</li>
+
+		<li><b>ruleId</b> :
+			Predicted symbol and individual rule id.
+		</li>
+
+		<li><b>rootsymbol</b> :
+			Symbol of the rule's root condition.
+		</li>
+
+	</ul>
+
+</ul>
+
+<h2 id="mergingRules">Merging and applying rules together</h2>
+
+<p>Applying Titarl rules individually tends to produce many false predictions on dense and complex datasets.
+	In these dataset, the interaction between the rules can be as important as the rules themselves.
+	For this reason, Titarl can merge and apply rules together.
+	To do so, Titarl consider each rule as an independent feature, and apply a transactional machine learning algorithm
+	to learn the relation between rules/features.
+	This is called the Titarl Fusion and is published in the paper "Learning Temporal Rules to Forecast Events in
+	Multivariate Time Sequences" Mathieu Guillame-Bert and Artur Dubrawski
+	NIPS Workshop 2014.
+</p>
+
+<p>
+	Support a file rules.xml containing a set of extracted rules.
+	Support a file dataset_train.bin containing a training dataset used to learn the correlation between rules.
+	Note that this dataset should not be the same as the one used to extract the rules.
+	Experiments show that in case of small dataset, the training dataset dataset_train.bin can be the same as the
+	dataset used to validate the rules.
+	Support a file dataset_test.bin containing a dataset on which we want to apply the rules.
+	The following commands will merge the rules, and apply them on the dataset_test.bin dataset.
+</p>
+
+<div class="cmd">
+	titarl --computeFusionStats rules.xml --database dataset_train.bin --output tmpFusioRecord --request_symbols
+	%rule_heads% --request_horizon 100 --request_length 300<br />
+	titarl --applyFusionStats rules.xml --database dataset_test.bin --output predictions --model randomForest
+	--fusionRecord tmpFusioRecord
+</div>
+
+<p>
+	The predictions will be saved in the file predictions.evt.
+	Statistics about the predictions will be saved in the files predictions.csv.
+	Details about the model will be saved into predictions_model.txt.
+</p>
+
+<p>
+	Unlike raw Titarl rules, the fusion requires for the user to specify the horizon and length of the predictions.
+	Those are defined by the parameters: request_horizon and request_length.
+	By default, for forecasting, it is a good idea to set the horizon to 0 and the length to the value "maxFuture" used
+	to extracted the rules.
+	Symmetrically, for detection, it is a good idea to set both the horizon and length to "maxPast" used to extracted
+	the rules.
+</p>
+
+<h2 id="evalPredictions">Evaluating predictions</h2>
+
+<p>
+	Once predictions are generated, the best way to evaluate them is to use Honey's report_amoc function to produce a
+	detailed report of the evaluation.
+	Suppose the predictions of the rules to be saved into the file prediction.evt.
+	The first step is to define a .sevt file that will contain both the test dataset and the predictions.
+	This .sevt file can look as follow:
+</p>
+
+<div class="example">
+	<div class="title">
+		Sevt file with both the input dataset and the predictions.
+	</div>
+	<div class="content">
+		dataset data_2_predictions_fusion.evt prediction.fusion.<br />
+		dataset data_2.bin<br />
+		flush true
+	</div>
+</div>
+
+<p>
+	The following Honey program will evaluate the predictions and save the results in files result_*.
+</p>
+
+<div class="example">
+	<div class="title">
+		Honey script to evaluate the predictions.
+	</div>
+	<div class="content">
+		AUTODATASET input:"inputAndPredictions.sevt" output:none<br />
+		<br />
+		$TARGET = echo "event.e1"<br />
+		$PREDICTIONS = echo "#prediction\.fusion\..*"<br />
+		<br />
+		report_amoc target:$TARGET trigger:$PREDICTIONS file:evaluation lockout:0 missValue:0 horizon:0 window:20
+	</div>
+</div>
+
+<p>
+	The result of this command will be an AMOC and a Temporal ROC similar as the following:
+</p>
+
+<p>
+	<img src="documentation/titarl/pictures/amoc.png">
+</p>
+
+<p>One important point: When you generate the predictions from rules using the --apply command, you have several options
+	for the value to assign to the "time" of the predictions.
+	Honey's report_amoc function evaluates the horizon of the predictions. For these measures to be significant, make
+	sure to generate predictions with the "predFormat" set to "trigger" so the time of prediction is set to be the time
+	when the rule fires.
+</p>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

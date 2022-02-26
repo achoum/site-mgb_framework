@@ -1,0 +1,523 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a class='selected' href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_intermediate.html#non_signal_equation'>Non signal equations</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_intermediate.html#signal_equation'>Signal equations</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_intermediate.html#file_format'>File formats</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_intermediate.html#entities'>Entities</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_intermediate.html#report_functions'>Report functions</a></ul><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Honey | Tutorial | Intermediate</h1><h2 id="non_signal_equation">Non signal equations</h2>
+
+<p>
+	In the previous tutorial, we saw how to specify a non-signal values using constants (e.g. <span
+		class="cmd">2</span>) or variables (e.g. <span class="cmd">%w</span>).
+	Honey also support some basic numerical and textual equations to interact with non-signal values.
+	A numerical equation starts with the symbol <span class="cmd">=</span>.
+	A textual equation starts with the symbol <span class="cmd">&</span>.
+	Both numerical and textual equations should follow the Polish equation notation.
+</p>
+
+<p>
+	For example, after executing the following command <span class="cmd">set %w =10,2,*,5,+</span>, the variable <span
+		class="cmd">%w</span> will be equal to <span class="cmd">20</span>.
+	Similarly, after executing the following command <span class="cmd">set %w "&hello, ,world,+,+"</span>, the variable
+	<span class="cmd">%w</span> will be equal to <span class="cmd">hello world</span>.
+</p>
+
+<p>Available numerical operators are: +, *, -, /, >, <,=, ^,>=, <=, !=, if, sin, cos, tan, log, rand, asin, acos, atan
+			and sqrt. Available string operators are: +.</p>
+
+			<h2 id="signal_equation">Signal equations</h2>
+
+			<p>
+				Similarly to non-signal equations, Honey support signal equations with the <span class="cmd">eq</span>
+				command.
+			</p>
+
+			<p>
+				The <span class="cmd">eq</span> commands has two required parameters: a signal value and an equation.
+				Additional signal value can also be provided.
+			</p>
+
+			<p>
+				As an example, the following command multiply records values by 2: <span class="cmd">$b = eq $a
+					"value,2,*"</span>.
+			</p>
+
+			<p>
+				<span class="cmd">value</span> is a keyword describing the value of the current record.
+				<span class="cmd">time</span> is a keyword linking to the current record time.
+			</p>
+
+			<p>
+				If additional signal values are provided, their respective values are accesses with the <span
+					class="cmd">arg1</span>, <span class="cmd">arg2</span>, ... keywords.
+			</p>
+
+			<p>For example, the following command divides the values of two channels: <span class="cmd">$c = eq $a
+					"value,arg1,/" arg1:$c</span></p>
+
+			<p>
+				Signal equations are also used by the <span class="cmd">passIf</span> function to filter record
+				according to their value.
+			</p>
+
+			<p>
+				For example, the following command will remove all the records with a value bellow 5: <span
+					class="cmd">$b = passIf $a "value,5,>"</span>.
+			</p>
+
+			<p>
+				Note that <span class="cmd">eq</span> and <span class="cmd">passIf</span> are not very fast. On large
+				datasets, and if possible, it might more interested to use other function (e.g. <span
+					class="cmd">passIfFast</span>).
+			</p>
+
+			<h2 id="file_format">File formats</h2>
+
+			<p>
+				Honey support several file formats to store SSTS.
+				In the beginner tutorial, we already saw the csv format, the evt format as well as the directory format.
+				In this section, we will talk again about these format, and we will seen some other more efficient
+				format.
+			</p>
+
+			<h3>CSV format</h3>
+
+			<p>
+				The Honey .csv file is a text file that represent a two dimensional matrix.
+				The first column contains timestamps while the other columns contain the numerical values of the
+				different channels for each timestamps.
+				Honey is able to detect the type of separator (tabulation, comma, semi-colon or space).
+				Note that, if in your analysis you have a .csv file with a different "structure" (e.g. the time is
+				expressed as text, symbolic attributes, relations or entities),
+				you can use the <a href="documentation_honey_importer">dirty CSV importer</a> that will be covered in
+				the advanced tutorial.
+			</p>
+
+			<p>
+				Here is a typical example of honey .csv file.
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					Time price_orange price_apple<br />
+					0 10 11<br />
+					0.1 10.5 11.1<br />
+					2.2 10.4 NA
+				</div>
+			</div>
+
+			<p>
+				Note such csv file require for all the channels to be synchronized.
+			</p>
+
+			<h3>EVT format</h3>
+			<p>A .evt file is a text file where each line specifies a record. Each line is {time-stamp} {channel name}
+				{record value}.
+				If the record value is omitted, Honey will assume a value of 1.
+			</p>
+
+			<p>
+				Optionally, and for compatibility purpose, a row can have a fourth value called the source. This value
+				is not read nor used by honey.
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					0 price_orange 10<br />
+					0 price_apple 11<br />
+					2 price_orange 10.5<br />
+					2 price_apple 11.1
+				</div>
+			</div>
+
+			<p>EVT format is especially useful when channels are not synchronized.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					0 price_orange 10<br />
+					1 price_apple 5<br />
+					1.1 price_orange 11.1<br />
+					5.2 price_apple 2
+				</div>
+			</div>
+
+			<h3>BIN format</h3>
+			<p>
+				A .bin file is a compact binary encoding of a .evt file.
+				The binary format is faster to read and write than the EVT and CSV formats.
+				For this reason, the binary format is preferable in large datasets.
+				Like the EVT format, the bin format handles naturally non-synchronized channels.
+				You write an Honey program or use the Honey toolbox to convert files from and to the binary format.
+				More details are given in the <a href="documentation_honey_command_line_ref">Honey command line
+					reference</a>.
+			</p>
+
+			<h3>SEVT format</h3>
+
+			<p>
+				The .sevt file is a text file that contact paths to other datasets files (.csv, .evt, .bin and .sevt).
+				The main purpose of .sevt files is to help organizing large datasets.
+				Sevt files are also extremely useful for deal with several SSTSs attached to several independent
+				entities/sources.
+			</p>
+
+
+			<p>
+				Here is a simple example of .sevt file. In this example, all the files are merged together.
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					dataset dataset1.csv<br />
+					dataset dataset2.csv<br />
+					dataset dataset3.evt<br />
+					flush true<br />
+				</div>
+			</div>
+
+			<p>The <span class="cmd">dataset</span> command accept three options. The first option is the path to the
+				dataset.
+				The second option (optional) is a prefix to add to each channel names in the dataset.
+				The last option (also optional) is a regular expression to filter the channel to load in memory
+			</p>
+
+			<p>
+				Here is an example with prefix and filetering.
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					dataset dataset1.csv prefix1.<br />
+					dataset dataset2.csv prefix2.<br />
+					dataset dataset3.evt prefix3. (dog|cat)_.*<br />
+					flush true<br />
+				</div>
+			</div>
+
+			<p>
+				When processing several records from several independent sources, the SSTSs cannot simply be merged
+				together.
+				In this situation, the user has two solutions:
+				The first is to apply the Honey program independently on the records of each source (with the use of
+				directory input for example).
+				However, this solution does not allows any cross or global analysis between the sources.
+				The second solution, is to apply the "Titarl trick".
+				The Titarl trick consists in merging all the datasets together, but to put enough "space" between them
+				to make sure their don't interact.
+				This spreading can be automatically done by Honey.
+				Additionally, Honey will generate specific records indicating the beginning and end of each dataset
+				segment.
+				As you will see in the next section "Entities", you can do a lot with this simple trick.
+			</p>
+
+			<p>
+				Here is an example of .sevt file and a plot illustrating the result.
+				The space between datasets can be controlled by two parameters: <span class="cmd">offset</span> and
+				<span class="cmd">minoffset</span>.
+				<span class="cmd">Offset</span> defines the space between the end of a dataset and the beginning of the
+				next one.
+				<span class="cmd">Minoffset</span> defines the minimum space between the beginning of a dataset and the
+				beginning of the next one.
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					minoffset 3600<br /><br />
+					sequence 1<br />
+					dataset src1_data1.csv<br />
+					dataset src1_data2.csv<br />
+					flush<br /><br />
+					sequence 2<br />
+					dataset src2_data1.csv<br />
+					dataset src2_data2.csv<br />
+					flush<br />
+				</div>
+			</div>
+
+			<div class="figure" style="margin:0px;display:inline-block;">
+				<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+					<img src="documentation/honey/pictures/titarltrick.png">
+				</div>
+			</div>
+
+			<p>
+				Note that in this second example we use <span class="cmd">flush</span> instead of <span
+					class="cmd">flush true</span>.
+				<span class="cmd">flush true</span> makes sure that time-stamps are modified.
+			</p>
+
+
+			<p>By default, dataset path are should be relative to the current directory of the running process.
+				In many cases, it is more interesting for the path to be related to the location of the .evt file.
+				This can be enabled using the command <span class="cmd">basepath relative</span>.
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					basepath relative<br />
+					dataset dataset.csv<br />
+					flush<br />
+				</div>
+			</div>
+
+			<p>
+				You can also specify records in the .sevt file itself with the <span class="cmd">event</span> command.
+				This way to specify records is not efficient and should be reserved to load only few (often structual
+				information about the source/entities).
+				The syntax is <span class="cmd">event {time} {symbol} {value}</span>.
+				Note that the time will be shifted the same way at the datasets from the "dataset" command.
+				The time can be a numerical value or one of the following two special jey words: <span
+					class="cmd">begin</span> or <span class="cmd">end</span>.
+				<span class="cmd">begin</span> will set the time to be at the beginning of the dataset while end will
+				set the time to be a the end of the dataset.
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					basepath relative<br />
+					minoffset 3600<br /><br />
+					sequence 1<br />
+					dataset group1_dataset1.csv<br />
+					dataset group1_dataset2.csv<br />
+					event 0 this_is_at_time_0 1<br />
+					event begin this_is_the_beginning_of_sequence_1 1<br />
+					event end this_is_the_end_of_sequence_1 1<br />
+					flush<br /><br />
+					sequence 2<br />
+					dataset group2_dataset1.csv<br />
+					dataset group2_dataset2.csv<br />
+					event begin this_is_the_beginning_of_sequence_2 1<br />
+					event end this_is_the_end_of_sequence_2 1<br />
+					flush<br />
+				</div>
+			</div>
+
+			<h2 id="entities">Entities</h2>
+
+			<p>
+				Honey can process records from different and independent entities.
+				In this section we will see how to compute some global statistics/features about independent entities,
+				and how to export these statistics into non-temporal csv files that can then be processed by any
+				analytics framwork.
+			</p>
+
+			<p>
+				Suppose a dataset that describe maintenance operations on a set of vehicule.
+				For each vehicule, the dataset contains a SSTS with various channels such as "inspection" or "change
+				carburetor".
+				You can suppose that the records of each vehicule is stored in a separated file in a directory (e.g.
+				"vehicule_1.evt", "vehicule_2.evt"),
+				or that the records of all the cars are in a same file (with the Titarl trick).
+				For this example, we will suppose the Titarl trick representation (Honey can apply the Titarl trick for
+				you with the a .sevt file).
+				Additionnally, each vehicule has some static information such as the model or the color.
+			</p>
+
+			<p>
+				In this execice, we want to compute various statistics from the SSTS records of each vehicule,
+				and we want the result to stored in a csv file where each row represents a vehicule, and each column
+				represent a computed statistics about the vehicule.
+				In this example, we will compute the number of inspection.
+				Note that the final result is not a "temporal" dataset anymore and can easily be processed by any
+				general data analytics framework (e.g. R, matlab, weka).
+			</p>
+
+			<p>
+				An important point with the Titarl trick is that the begining and end of each vehicle records is
+				delimited by the "sequence" and "end_sequence" records.
+				To compute global statistics about an entity (e.g. a vehicule), the "endsequence" can be used to
+				"trigger" the statistics computation and exportation.
+				As an example, computing once, at the end of a vehicule record, a moving count of the maintenance
+				operations (<span class="cmd">count</span> function) with a window length larger than the entire
+				vehicule record,
+				is acctualy equivalent to counting the total number of maintenance operations on this vehicule.
+				The same concept can be applied for all the other Honey functions.
+			</p>
+
+			<p>
+				Here is an example of such program:
+			</p>
+
+			<div class="example">
+				<div class="title">
+					example.hny
+				</div>
+				<div class="content">
+					@data input:"vehicule.bin" output:"result.csv"<br />
+					<br />
+					$all = echo #.*<br />
+					<br />
+					$end_sequence = filter $all "end_sequence"<br />
+					$intervention = filter $all "event.record"<br />
+					set %record_duration 5000<br />
+					<br />
+					$a = rename $end_sequence "vehicule_id"<br />
+					$out += $a<br />
+					<br />
+					$a = count $intervention %record_duration trigger:$end_sequence<br />
+					$a = rename $a "number_of_intervention"<br />
+					$out += $a<br />
+					<br />
+					saveBufferedCsv $out file:%output saveTime:false
+				</div>
+			</div>
+
+
+			<h2 id="report_functions">Report functions</h2>
+
+			<p>
+				Report functions are functions that requiere to have access to all the channels records at once to
+				compute some (more or less complex) global statistics and report.
+				Report functions do not generate any records.
+				The result of report functions is generaly as a file (e.g. a picture, a table, a text file).
+			</p>
+
+			<p>
+				An example of report function is the <span class="cmd">report_histIntersectEventState</span> function
+				that produces a set of conditionnal histogram count of a set of channels according to another set of
+				channels.
+				The result are stored in a text file.
+			</p>
+
+			<p>
+				As an example, this function can be used to evaluate the distribution of a particular event (represented
+				as a record) according to the hour of the day (which can be obtained by the <span
+					class="cmd">calendar</span> function).
+			</p>
+
+			<div class="figure" style="margin:0px;display:inline-block;">
+				<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+					<img src="documentation/honey/pictures/report_hist.png">
+				</div>
+			</div>
+
+			<p>
+				The <span class="cmd">report_histIntersectEventScalar</span> report function is similar to the <span
+					class="cmd">report_histIntersectEventState</span> function except that the values of the
+				conditionnal variables are supposed continuous.
+			</p>
+
+			<p>
+				Another very important report function is the <span class="cmd">report_amoc</span> function. This
+				function evaluates the detection or forecasting capabilities of between a set of channels and a target
+				channel.
+				The result include several AMOC curves, a Tempororal ROC curve, as well as various cross-statistics,
+				confidences intervals and p-values.
+			</p>
+
+			<p>
+				If your analitical work is based of forecasting or detection or rare events, I recommand that you read
+				the documentation of the following functions: <span class="cmd">report_amoc</span>, <span
+					class="cmd">report_implication</span> and <span class="cmd">report_predictorSelection</span> as well
+				as the tutorial on Titarl.
+				Titarl is a framework (compatible with Honey and Event Viewer) to extract temporal rules and build
+				forecastinf models.
+			</p>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

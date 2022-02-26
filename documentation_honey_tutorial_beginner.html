@@ -1,0 +1,1171 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a class='selected' href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#getting_started'>Getting started</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#input_output'>Input data and output data</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#run_first_program'>Looking at your first dataset</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#run_first_program'>Running your first Honey program</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#syntax'>General Honey syntax</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#signal_variables'>Signal variables</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#tailing_word'>A word about tailing functions</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#non_signal_variables'>Non signal variables</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_beginner.html#useful_functions'>Some useful Honey functions</a></ul><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Honey | Tutorial | Beginner</h1><h2 id="getting_started">Getting started</h2>
+
+<p>
+	Welcome to the beginner Honey tutorial. Through this tutorial, you will lean the Honey programming language that
+	will hopefully be useful for your research and analysis.
+</p>
+
+<p>
+	Before you continue, make sure that Honey is correctly installed on your computer:
+	To do so, run honey with the command line <span class="cmd">honey</span> in a console; or (if you do not know how to
+	use a console) double click on the "honey" binary located in the "Honey/bin" directory.
+	If Honey is not correctly installed, refer to the <a href="documentation_honey_beginnersGuide#gettingHoney">Getting
+		Honey section</a>.
+</p>
+
+<h3 id="command_line">Honey command line</h3>
+
+<p>
+	Honey can be used in several different ways: Using Honey with the command line (e.g. <span class="cmd">honey
+		source.hny</span>) and your favorite text editor is one of the possibility.
+	Alternatively (and preferably for new users), you can use the Honey Editor (called "HoneyEditor" and located in the
+	Honey/bin folder). The Honey editor has several interesting features that you may find useful:
+</p>
+<ul>
+	<li>Syntax coloring.</li>
+	<li>Easy script execution (by pressing F5).</li>
+	<li>Easy script syntax checking (by pressing F9).</li>
+	<li>Plotting of Honey network.</li>
+	<li>Integrated documentation (selects a text and press F1).</li>
+	<li>Multiple simultaneous file editions (especially useful when your program is spread across several files).</li>
+</ul>
+
+<p style="text-align: center;">
+	<img src="documentation/honey/pictures/honey_editor.png">
+</p>
+
+<h3 id="event_viewer">Event viewer</h3>
+
+<p>
+	Event Viewer is an essential tool to use alongside with Honey.
+	Event Viewer is a powerful interactive visualization tool for time series, time sequences and other symbolic and
+	numerical temporal datasets.
+	It allows you to look and explore your data to better understand it.
+	Event Viewer also allows you to look at the results you will obtain with your Honey programs.
+</p>
+
+<p>Event Viewer is located in the Honey/bin folder.</p>
+
+<p>For more details about Event Viewer, read the <a href="documentation_eventviewer_beginnersGuide">Beginner guide</a>
+	and watch the <a href="documentation_eventviewer_tutorial">Event Viewer video tutorial</a>.</p>
+
+<p style="text-align: center;">
+	<img src="documentation/honey/pictures/ev.png">
+</p>
+
+<h2 id="input_output">Input data and output data</h2>
+
+<p>
+	Before writing your first Honey program, you need to be familiar with some naming convention:
+</p>
+
+<p>
+	Honey datasets are <i>SSTSs</i> (symbolic and scalar time sequence).
+	A SSTS is composed of a set of <i>channels</i>.
+	Each channel is composed of a symbol (i.e. a name) and a set of <i>records</i>.
+	A record is composed of a <i>time-stamp</i> and (optionally) a <i>value</i>.
+	A time-stamp is a representation of time stored as a Double-precision floating-point number.
+	Honey does not make any assumption on the unit of the time (it can be days, years, seconds, microseconds, etc).
+	The value is a single-precision floating-point number that represent a measurement.
+	If not specified, Honey will consider this value to be 1.
+</p>
+
+<p>
+	A (multivariate) time series is a special case of SSTS with uniformly sampled time-stamps.
+	For this reason, Honey also works perfectly on time series.
+</p>
+
+<p>
+	The following plot shows an illustration of an SSTS.
+</p>
+
+<p style="text-align: center;">
+	<img src="documentation/honey/pictures/ssts2.png">
+</p>
+
+<p>
+	In this plot, the channels "channel 1" and "channel 3" are plotted differently (channel 1 with "bars", and channel 3
+	with stairs) but they are both SSTS channels.
+	Honey does not make any assumption about the continuity of the sampling or the nature of the channels.
+	It is only when you will plot your data (for example with Event Viewer), that you will specify how each channels are
+	drawn.
+</p>
+
+<p>
+	By convention, we call <i>scalar channels</i> the channels reporting continuous (or repetitive) measurements, and we
+	call <i>event channels</i> the channels representing change-points.
+	While Honey does not make any distinctions between the two, but some of the Honey function are easier to understand
+	with this convention.
+	Time series (as found in the literature) are by definition composed of scalar channels by definition.
+	Note the Honey does not make any difference between the two type, and that sometime the distinction is not always
+	clear.
+</p>
+
+<p>
+	Honey support several file formats to specify its input and outputs.
+	In the beginner tutorial, we will only use two text formats: .csv and .evt.
+	Later in the intermediate and advanced tutorials we will present and use other file formats that are better suited
+	for larger and distributed datasets.
+</p>
+
+<p>
+	Bellow you can see two examples of equivalent .csv and .evt files.
+	Note that, if in your analysis you have a .csv file with a different "structure" (e.g. the time is expressed as
+	text, symbolic attributes, relations or entities),
+	you can use the <a href="documentation_honey_importer">dirty CSV importer</a> that will be covered in the advanced
+	tutorial.
+</p>
+
+<div class="example">
+	<div class="title">
+		example.csv
+	</div>
+	<div class="content">
+		time s1 s2<br />
+		1 0.5 0.1<br />
+		1.5 1.2 1.5
+	</div>
+</div>
+
+<div class="example">
+	<div class="title">
+		example.evt
+	</div>
+	<div class="content">
+		1 s1 0.5<br />
+		1 s2 0.1<br />
+		1.5 s1 1.2<br />
+		1.5 s2 1.5
+	</div>
+</div>
+
+<p>In Honey, a (non dirty) csv file should only contain numerical values, and the first column, should represent the
+	time.
+	Alternatively, each line of an evt file is structured as "time channel value" and represent a single record.
+</p>
+
+<p>
+	In the advanced tutorial, we will also see the notion of <i>entities</i> and multiple SSTSs.
+</p>
+
+<h2 id="run_first_program">Looking at your first dataset</h2>
+
+<p> In the beginner tutorial, we will use the dataset "vital.csv" located in the "Honey/bin/example/data" folder.
+	This dataset is a medical record composed of a ten seconds and a five seconds segments of various vital signs
+	sampled at 250Hz.
+	You do not need to understand this dataset to follow this tutorial.
+	The folder Honey/bin/example/data contains various other sample datasets that you are welcome to play with.
+</p>
+
+<p style="text-align: center;">
+	<img src="documentation/honey/pictures/tutorial_dataset.png">
+</p>
+
+<p>
+	Your first exercise is to look at this dataset: Start Event Viewer, click on File/Import/CsvFile and select the
+	"vital.csv" file.
+	By default, Event Viewer will connect the two segments for each channel.
+	You can look at the <a href="documentation_eventviewer_tutorial">Event Viewer video tutorial</a> to learn how to
+	draw the segments disconnected.
+</p>
+
+<h2 id="run_first_program">Running your first Honey program</h2>
+
+<p>It is now time to run your first Honey program.
+	This first program will take the vital.csv dataset; independently compute a two seconds <i>tailing moving
+		average</i> for each of the channels; and save the results in the file "result/vital_tutorial1.evt".
+</p>
+
+<p>
+	As a reminder, a <i>tailing moving average</i> (also called <i>tailing simple moving average</i> or <i>taiting
+		sma</i> or <i>sma</i> or <i>ma</i>) is the average of a certain amount of previous observation values.
+	For time series, moving average length is generally defined as a number of observations to average.
+	However since Honey does not suppose the time to be uniformly sampled, Honey's moving average is expressed in time
+	unit:
+	A two second moving average averages all the observations in the last two seconds.
+	Note that the number of observations in the last two seconds is variable (between 0 and 500 in the tutorial
+	dataset).
+	As you will see later, Honey offers different ways to deal with this way of specification, for example, by
+	introducing a <i>minimum number of observations</i>.
+</p>
+
+<p>If you feel that applying a moving average is not interesting enough, I urge you to be patient! By the end of this
+	tutorial we will (among other things) build a heart beat calculator.</p>
+
+<p>
+	Now, open Honey Editor, create a new file, copy the content on the green box bellow in the editor, and save this
+	file in the directory "Honey/bin/example".
+	Next, click on Run/run (or press F5) to compile and run the program.
+</p>
+
+<div class="example">
+	<div class="title">
+		Your first Honey program : tutorial_1.hny
+	</div>
+	<div class="content">
+		@data input:data/vital.csv output:result/vital_tutorial1.evt<br />
+		$all = echo #.*<br />
+		$result = sma $all 2<br />
+		save file:%output $result<br />
+	</div>
+</div>
+
+<p>Before we go through explaining this program, let's plot the program's result (in the file "vital_tutorial1.evt")
+	along with the input "vital.csv".
+	Using Event Viewer, and after playing a bit with Event Viewer display configuration, the result should look as
+	follow:</p>
+
+<p style="text-align: center;">
+	<img src="documentation/honey/pictures/tutorial_dataset2.png">
+</p>
+
+<p>For each of the input vital signs, you can now see a 2 seconds moving average.
+	Each moving average is stored in a new channel which names have been automatically defined as the original channel
+	name followed by "_sma[2]".
+	By default, Honey generates new names for results of functions. This allows an easy understanding of what each
+	channel represent.
+	Of course, when many functions are applied one after another, channels names tend to be large and hard to interpret.
+	In this case, the user has the possibility to change channels names.
+	You can also see that the moving average is not computed in the "gap".</p>
+
+<p>Now, let go quickly through the program. This is only an overview and the exact definition of Honey syntax will be
+	given later.</p>
+
+<ul>
+
+	<li> <span class="cmd">@data input:data/vital.csv output:result/vital_tutorial1.evt</span><br />
+		This line specifies the input and output datasets of the program. Note that the result will be stored into a
+		.evt file instead of a .csv file as for the input.
+		Evt files are simple text files (similar to CSV file) that allow non-synchronized channels (unlike Csv files).
+	</li>
+
+	<li> <span class="cmd">$all = echo #.*</span><br />
+		This line specify that all the records of all channels available at this line (i.e. all the channels from the
+		input file) should be directed in the <i>signal variable</i> <span class="cmd">$all</span> (<span
+			class="cmd">$</span> indicates that this is a channel variable).
+		Almost all Honey programs start with this line. Note that <span class="cmd">$all</span> can be seen as a "pipe":
+		It does not "contain" the records, but instead indicate where the records should be directed.
+		When used as the beginning of a constant, <span class="cmd">#</span> indicates a filter of channel names with a
+		regular expression.
+		<span class="cmd">#.*</span> actually means to select everything.
+	</li>
+
+	<li> <span class="cmd">$result = sma $all 2</span><br />
+		This line applies a SMA (simple moving average) with a 2 seconds window on all the records coming from the
+		signal variable <span class="cmd">$all</span>.
+		The SMAs are applied independently on sets of records grouped by channel.
+		The results are directed into <span class="cmd">$result</span>.
+	</li>
+
+	<li> <span class="cmd">save file:%output $result</span><br />
+		Finally, this line writes all the records coming from <span class="cmd">$result</span> into the .evt file
+		specified in the "output" field in the first line of the program.
+	</li>
+
+</ul>
+
+<h2 id="syntax">General Honey syntax</h2>
+
+<p>
+	Empty lines and lines begening by the character <span class="cmd">#</span> are ignored.
+	Remaining lines should follow one of the following structures:
+</p>
+
+<ol>
+	<li>
+		[&lt;destination variable&gt; &lt;operator&gt;] &lt;function name&gt; {&lt;anonymous parameter value&gt;}*
+		{&lt;named parameter&gt;:&lt;named parameter value&gt;}*
+	</li>
+	<li>
+		&lt;destination variable&gt; &lt;operator&gt; &lt;source variable&gt;
+	</li>
+</ol>
+
+<p>
+	Where <span class="cmd">[]</span> means that the element is "optionnal",
+	and <span class="cmd">{}*</span> means that the element can be repeted none, one or several times.
+</p>
+
+<p>
+	Let's look at the sma line in the example: <span class="cmd">$result = sma $all 2</span>.
+<p>
+
+<ul>
+	<li>
+		<span class="cmd">$result</span> is the &lt;destination variable&gt;.
+	</li>
+
+	<li>
+		<span class="cmd">=</span> is the &lt;operator&gt;.
+		<span class="cmd">=</span> replaces the content of a variable by a new content.
+		Honey also support the <span class="cmd">+=</span> operator.
+		The <span class="cmd">+=</span> operator indicates that the new records are aggregate with the existing records
+		in the destination variable.
+		Note that <span class="cmd">+=</span> does not "addition" the values of the variables.
+	</li>
+
+	<li>
+		<span class="cmd">sma</span> is the &lt;function name&gt;.
+		Honey supports many functions all related to SSTS processing.
+		The definition of each function, as well as their required parameters is defined in the <a
+			href="documentation_honey_functions">function reference</a>.
+		We will also see later that you define your own functions.
+	</li>
+
+	<li>
+		<span class="cmd">$all</span> and <span class="cmd">2</span> are the two required (i.e. non optional) anonymous
+		parameters of the sma function.
+		The first parameter is a signal value (carried by a signal variable), the second parameter is a non-signal
+		value.
+		As we will see later, <span class="cmd">sma</span> support several optional named parameters. For example, the
+		signal parameter named <span class="cmd">trigger</span>.
+		If we wanted to specify this parameter, sma would be called as <span class="cmd">$result = sma $all 2
+			trigger:$some_signal</span>.
+	</li>
+
+</ul>
+
+<p>
+	All signal variables (i.e. variables carrying signal) start with the character <span class="cmd">$</span>.
+</p>
+
+<p>
+	Functions are defined in the <a href="documentation_honey_functions">function reference</a>.
+	We will also cover in details some of the most useful functions in the last section of the beginner tutorial.
+</p>
+<p>
+	By convention, functions starting with the character <span class="cmd">@</span> are functions for which the location
+	in the source code has no importance.
+	In our example, we could have put the line <span class="cmd">@data input:data/vital.csv
+		output:result/vital_tutorial1.evt</span> anywhere in the source code.
+</p>
+
+<p>
+	All function names, parameter names, parameter values and variables names can contain spaces.
+	To specify such element, you can use <span class="cmd">"</span>. As an example, the four following lines are exactly
+	equivalent:
+</p>
+
+<div class="example">
+	<div class="content">
+		$result = sma $all 2<br />
+		$result = sma $all "2"<br />
+		$result = sma "$all" 2<br />
+		$result = "sma" $all 2<br />
+	</div>
+</div>
+
+<h2 id="signal_variables">Signal variables</h2>
+
+<p>Signal variables are variables that "carry" records.
+	By convention signal variables start with the <span class="cmd">$</span> symbol.
+	If you remember, we said earlier that when compiled, a Honey program was converted into a process flow network,
+	where nodes represented functions and edges represented the flow of records in between functions.
+	Signal variables are related but are not equivalent to the edges of the flow network.
+	For this reason, while nodes and edges of the final network are not "ordered", the order of definition and use of
+	the signal variables in the source code is important.
+	To illustrate this idea, suppose the following program and its process flow network.
+</p>
+
+<div>
+	<table style="margin:auto;">
+		<tr>
+			<td>
+
+				<div class="example">
+					<div class="title">
+						Example of script
+					</div>
+					<div class="content">
+						$A = echo #.*<br />
+						$B = sma $A 2<br />
+						$B += tma $B 3<br />
+						save $B file:"output.evt"
+					</div>
+				</div>
+
+			</td>
+			<td style="padding:20px;">
+				Becomes
+			</td>
+			<td>
+
+				<div class="figure" style="margin:0px;">
+					<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+						<img src="documentation/honey/pictures/testFlow.png">
+					</div>
+				</div>
+
+			</td>
+		</tr>
+	</table>
+</div>
+
+<p>
+	In this example, you can see that the signal variable <span class="cmd">$B</span> is used and modified several
+	times, and that it is not attached to the same edge along the program source code.
+</p>
+
+<p>
+	We will see in the advanced tutorial how signal variables can be used to define cycles in the networks.
+</p>
+
+<h2 id="tailing_word">A word about tailing functions</h2>
+
+<p>
+	When designed a processing of a SSTS for a forecasting application (i.e. predicting the future from the past
+	observations)
+	it is important to ensure that the processing do not "cheat" during the testing phase by using future observations.
+	For example, given a forecasting exercice, it would be incorrect to use record sampled at 10:00am to generate a
+	forecasting signal at 8:00.
+	While this is obvious, it is easy to make such mistakes when implementing complex processing.
+	For this reason, unless specified, all Honey function suppose to be applied in an online streaming process:
+	Given a function, a output record at time t will only depend on input records anterior to t.
+	This ensure that Honey program always produces similar results on static and online streaming records.
+</p>
+
+<p>
+	In other words, functions are "tailing" functions.
+</p>
+
+<p>
+	Honey has two exceptions to this rules:
+	The function <span class="cmd">echoPast</span> that send signal "in the past", and the functions which names start
+	by <span class="cmd">report_</span>.
+	<span class="cmd">echoPast</span> is generally used for data annotation, while report functions are designed to
+	compute some global analysis on an entire SSSTS.
+</p>
+
+<p>
+	Note that by combining <span class="cmd">echoPast</span> and <span class="cmd">sma</span>, you can create a centered
+	moving averagre function.
+</p>
+
+<p>
+	If you try to run a Honey program that contain an <span class="cmd">echoPast</span> or a report function in a online
+	streaming mode, and error will be raised.
+</p>
+
+<h2 id="non_signal_variables">Non signal variables</h2>
+
+<p>
+	In the previous example <span class="cmd">$result = sma $all 2</span>, we saw the function <span
+		class="cmd">sma</span> which requiere one signal value and one non-signal value.
+	This non-signal variable is the window lenght of the moving average.
+	In this example, the signal value is provided by a signal variable <span class="cmd">$all</span>, while the
+	non-signal value is provided by a constant <span class="cmd">2</span>.
+	Similarly to signal variable, Honey support non-signal variables.
+	All non-signal variables start with the character <span class="cmd">%</span>.
+	The assignation of non signal value is done with the <span class="cmd">set</span> function.
+	To illustrate non-signal values, let us look at the two equivalent programs:
+</p>
+
+<div class="example">
+	<div class="title">
+		program1.hny
+	</div>
+	<div class="content">
+		$result = sma $A 2
+	</div>
+</div>
+
+<div class="example">
+	<div class="title">
+		program2.hny
+	</div>
+	<div class="content">
+		set %p 2<br />
+		$result = sma $A %p
+	</div>
+</div>
+
+<p>
+	Non signal-values can be strings and numbers.
+</p>
+
+<p>
+	The last line of our first example was <span class="cmd">save file:%output $result</span>.
+	In this case, <span class="cmd">%output</span> was actually a non-signal variable automatically defined by the <span
+		class="cmd">@data</span> function.
+</p>
+
+<h2 id="useful_functions">Some useful Honey functions</h2>
+
+<p>
+	Now that you know that basics of the Honey programming language, we will go through the some of the most common and
+	useful functions in Honey.
+	The functions covered in this section are
+	<span class="cmd">@data</span>
+	, <span class="cmd">echo</span>
+	, <span class="cmd">print</span>
+	, <span class="cmd">tick</span>
+	, <span class="cmd">sma</span>
+	, <span class="cmd">save</span>
+	, <span class="cmd">sample</span>
+	, <span class="cmd">set</span>
+	, <span class="cmd">layer</span>
+	, <span class="cmd">filter</span>
+	, <span class="cmd">rename</span>
+	, <span class="cmd">skip</span>
+	, <span class="cmd">renameRegexp</span>
+	and <span class="cmd">saveBufferedCsv</span>
+	.
+	Note that while you will use many other functions, most functions work the same way and understanding these few
+	examples will help you understanding other ones.
+</p>
+
+<h3>@data</h3>
+
+<p>
+	The <span class="cmd">@data</span> function specify the input and output files of the script.
+	The input can be a file, a set of files separated by <span class="cmd">;</span>, or a directory.
+	The output can be a file or a directory (in the case the input is also a directory).
+</p>
+
+<p>
+	When the input is a directory, the honey program will be applied independently on each file of the input directory.
+	And an output file will be generated in the output directory for each input file (with the same name).
+	In case of an input directory, and if the output file type is different from the input file type,
+	you can specify the optional named parameter <span class="cmd">extension</span>.
+</p>
+
+<p>
+	If several <span class="cmd">@data</span> are specified, the honey program will be applied independently on each of
+	them.
+</p>
+
+<p>
+	If several input files are specified inside of a single <span class="cmd">@data</span> call, these files will be
+	merged together before applying the honey program.
+</p>
+
+<p>
+	If you are familiar with older version of Honey, note that <span class="cmd">@data</span> has replaced the <span
+		class="cmd">AUTODATASET</span> function.
+</p>
+
+<p>
+	By convention, because <span class="cmd">@data</span> begins with <span class="cmd">@</span>, the <span
+		class="cmd">@data</span> function can be put anywhere in the source code without any difference.
+</p>
+
+<p>
+	<span class="cmd">@data</span> is not supported in online streaming mode (we will see that in the advanced
+	tutorial).
+</p>
+
+<p>
+	If the input is set to "-", the input records will be read from the standard input of the program execution.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@data input:"input.csv" output:"output.evt"<br />
+		@data input:"input_1.csv;input_2.csv;input_3.evt" output:"output.evt"<br />
+		@data input:"input_directory" output:"output_directory" extension:evt<br />
+		@data input:"-" output:"output.evt"<br />
+	</div>
+</div>
+
+<p>
+	Note that you can specify the input and output parameter of a script (same as <span class="cmd">@data</span>) by
+	using <span class="cmd">--input</span> and <span class="cmd">--define output</span> parameter in the Honey command
+	line call.
+	Example: <span class="cmd">honey program.hny --input:input_1.csv --define output:output_1.evt</span>
+</p>
+
+
+<h3>echo</h3>
+
+<p>
+	The <span class="cmd">echo</span> is repeating every records it receives.
+	In most situations, <span class="cmd">echo</span> can and should be replaced by the <span class="cmd">+=</span> or
+	<span class="cmd">=</span> operators alone.
+</p>
+
+<p>
+	For example, the two following lines are equivalent.
+</p>
+
+<div class="example">
+	<div class="content">
+		$A += echo $B<br />
+		$A += $B
+	</div>
+</div>
+
+<p>
+	For non advanced users, there is one situation where you will use <span class="cmd">echo</span>:
+	At the beginning of your honey program. When put at the beginning of the program,
+	<span class="cmd">$all = echo #.*</span> captures all the records provided by the input datasets.
+	As a side note, <span class="cmd">#.*</span> is an example of Honey global regular expression filtering that you
+	will see in the advanced tutorial.
+	While extremely powerful, global regular expression filtering can create cycles in your flow network without you
+	realizing it.
+	For this reason, it is recommended for beginner users to only use echo once at the beginning of your program.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		$all = echo #.*
+	</div>
+</div>
+
+<h3>print</h3>
+
+<p>
+	<span class="cmd">Print</span> displays (in the console) the name and some statistics about the records provided to
+	the function.
+	<span class="cmd">Print</span> is mostly useful for debugging and monitoring purposes.
+	You can specify the optional non-signal named parameter "label" in case you want to differentiate between several
+	print calls.
+</p>
+
+<p>
+	In static execution mode (the default execution mode -- you will learn more about that later), <span
+		class="cmd">print</span> displays statistics at the end of the program execution.
+	In streaming mode, <span class="cmd">print</span> displays statistics every time a new channel is met.
+	If you specify the named parameter <span class="cmd">every:true</span>, <span class="cmd">print</span> displays a
+	line in the console for every incoming record.
+	This last situation might produce a lot of console output.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		print $A<br />
+		print $A label:"This is $A"<br />
+		print $A every:true
+	</div>
+</div>
+
+<h3>tick</h3>
+
+<p>
+	<span class="cmd">tick</span> generates a record at regular interval.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# Generate a signal every 1.5 time units.<br />
+		$a = tick 1.5
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/tick.png">
+	</div>
+</div>
+
+<h3>sma</h3>
+
+<p>
+	As we saw, <span class="cmd">sma</span> computes a tailing moving average for each input channel.
+	The length of the moving window is defined by the second anonymous parameter.
+</p>
+
+<p>
+	By default, <span class="cmd">sma</span> generates a new record every time it receives an input record,
+	and if at least six input records are in the tailing moving window.
+	This minimum number of records can be changed with the parameter <span class="cmd">minNumObs</span>.
+	The following plot illustrates the behavior of the sma function with a moving window of 10 time units.
+</p>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/sma_notrigger.png">
+	</div>
+</div>
+
+<p>
+	If you want for <span class="cmd">sma</span> to generate a signal at a specific times instead of at every new input
+	records,
+	you can specify the named signal parameter <span class="cmd">trigger</span>.
+	Every time a record is received on the trigger parameter, the <span class="cmd">sma</span> function will (try to)
+	generate an output record.
+	The <span class="cmd">trigger</span> parameter is useful to down sample and synchronize channels.
+	The following plot shows an example of sma result with a trigger channel.
+</p>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/sma_trigger.png">
+	</div>
+</div>
+
+<p>
+	If not enough records are available, <span class="cmd">sma</span> does not generate a record.
+	If the named parameter <span class="cmd">emptyValue</span> is specified, sma will generate a record with this given
+	value instead of not generating a record.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		$b = sma $a 10<br />
+		$b = sma $a minNumObs:20<br />
+		$b = sma $a minNumObs:5 emptyValue:-1<br />
+		<br />
+		$c = tick 10<br />
+		$b = sma $a trigger:$c<br />
+	</div>
+</div>
+
+<p>
+	Many functions work in the exact same way as <span class="cmd">sma</span>. To name a few of them:
+	<span class="cmd">sum</span>
+	, <span class="cmd">count</span>
+	, <span class="cmd">tma</span>
+	, <span class="cmd">sd</span>
+	, <span class="cmd">windowfeatures</span>
+	and <span class="cmd">ema</span>.
+</p>
+
+<p>
+	The <span class="cmd">windowfeatures</span> is a function that computes several basic moving statistic.
+	The following example shows the use of the <span class="cmd">windowfeatures</span> function on the vital.csv
+	dataset.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@data input:"data/vital.csv" output:"result.evt"<br />
+		$all = echo "#.*"<br />
+		$a = filter $all "Airway_pressure"<br />
+		$b = windowfeatures $a 1<br />
+		save $b file:%output
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/window.png">
+	</div>
+</div>
+
+
+<h3>sample</h3>
+
+<p>
+	<span class="cmd">sample</span> samples a channel according to trigger signal parameter (similarly as <span
+		class="cmd">sma</span>).
+	If not input record is available at the extract time of the sampling, the last received record is used.
+	Using the <span class="cmd">sma</span> (without trigger) and <span class="cmd">sample</span> functions is similar to
+	using the <span class="cmd">sma</span> function with trigger.
+</p>
+
+<p>
+	The <span class="cmd">sample</span> function is useful to synchronize several channels together, for example, before
+	exporting records to a csv file (remember that CSV require all the channels to be synchronized).
+</p>
+
+<p>
+	By default, the name of <span class="cmd">sample</span> output channel is defined as the input channel name
+	postfixed by <span class="cmd">_sampled</span>.
+	For example, the channel "channel1" will become "channel1_sampled".
+	You can disable this behavior by enabling the named parameter <span class="cmd">noTail</span>.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		$a = sample $b trigger:$c<br />
+		$a = sample $b trigger:$c noTail:true<br />
+	</div>
+</div>
+
+<p>Here is an example of <span class="cmd">sample</span> on the vital.csv dataset.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@data input:"data/vital.csv" output:"result.evt"<br />
+		$all = echo "#.*"<br />
+		$a = filter $all "Airway_pressure"<br />
+		$b = tick 1<br />
+		$b += sample $a trigger:$b<br />
+		save $b file:%output
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/sample.png">
+	</div>
+</div>
+
+<h3>save</h3>
+
+<p>
+	<span class="cmd">Save</span> saves the content of a channel into a .evt file.
+	Unlike other saving functions, <span class="cmd">save</span> can write its incoming records as they come (instead of
+	waiting for the end of the program execution).
+</p>
+
+<p>
+	The output file is specified by the named non-signal parameter <span class="cmd">file</span>.
+</p>
+
+<p>
+	By default, if the output file already exist, it will be replaced.
+	If you define <span class="cmd">append:true</span>, the record will be added at the end of the file.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		save $a file:%output<br />
+		save $a file:"output.evt"<br />
+	</div>
+</div>
+
+
+<h3>set</h3>
+
+<p>
+	<span class="cmd">set</span> defines the value of a non-signal variable.
+</p>
+
+<p>
+	We will see in the intermediate tutorial how to write equations with non-signal variables.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		set %output "output.evt"<br />
+		set %window 80<br />
+		set %window 81
+	</div>
+</div>
+
+
+<h3>layer</h3>
+
+<p>
+	<span class="cmd">layer</span> supposes a set of threshold values and generates records indicating in which interval
+	the current record value is in, and when there interval are changed.
+	This is the simplest function to generate "event channels" from "scalar channels".
+</p>
+
+<p>
+	The thresholds are defined by the <span class="cmd">min</span>, <span class="cmd">max</span> and <span
+		class="cmd">step</span> parameter values.
+	For example, <span class="cmd">layer $a min:0 max:10 step:2</span> will suppose the thresholds 0, 2, 4, 6, 8 and 10.
+</p>
+
+<p>
+	The following plot illustrates the behavior of the <span class="cmd">layer</span> function.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@data input:"data/vital.csv" output:"result.evt"<br />
+		$all = echo #.*<br />
+		$a = layer $all min:1 max:15 step:3<br />
+		save $a file:%output
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/layer.png">
+	</div>
+</div>
+
+<p>
+	The <span class="cmd">peak</span> function is another example of function to generate event channels from scalar
+	channels.
+</p>
+
+<h3>filter</h3>
+
+<p>
+	<span class="cmd">filter</span> filters records according to their channel names according to a regular expression.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		$all = echo #.*<br />
+		# Suppose $all contains the channels "toto1", "toto2" and "tata".<br />
+		$a = filter $all "toto[12]"<br />
+		# $a contains the channels "toto1" and "toto2" only.
+	</div>
+</div>
+
+<h3>rename</h3>
+
+<p>
+	<span class="cmd">rename</span> repeats a channel (like <span class="cmd">echo</span>) but also change its name.
+</p>
+
+<p>
+	By default, if several input channels are provided, an error will be raised.
+	If the named non-signal parameter <span class="cmd">keepAll</span> is defined to true, all the input channels will
+	be renamed (to the same name).
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		$all = echo #.*<br />
+		# $all should contain only one channel (e.g. "toto").<br />
+		$a = rename $all "value"<br />
+		# $a now contains the channel "value" that contains the same records as $all.<br />
+		<br />
+		$all = echo #.*<br />
+		# Suppose $all contains several channels.<br />
+		$a = rename $all "value" keepAll:true<br />
+		# All the channels in $all are grouped into a new channel named "value".
+	</div>
+</div>
+
+<h3>renameRegexp</h3>
+
+<p>
+	<span class="cmd">renameRegexp</span> is similar to <span class="cmd">rename</span> except that the renaming is
+	defined by a substitution regular expression.
+	This allows <span class="cmd">renameRegexp</span> to rename several channels at the same time.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# Suppose that $a contains three channels: "cat_blue", "cat_red", "cat_green".<br />
+		$a = renameRegexp $a "cat_([a-z]+)" "dog_$1"<br />
+		# $a now contains three channels: "dog_blue", "dog_red", "dog_green".
+	</div>
+</div>
+
+<h3>saveBufferedCsv</h3>
+
+<p>
+	<span class="cmd">saveBufferedCsv</span> exports the content of a channel to a csv file.
+</p>
+
+<p>
+	This function is mainly useful after using Honey to compute some complex temporal processing,
+	and when you want to use you favorite (other) language to study and plot the result of the Honey program.
+</p>
+
+<p>
+	Since a csv files requires for channels to be synchronized, the <span class="cmd">saveBufferedCsv</span> function
+	might change the data.
+	If you know that the result of Honey is non-synchronized, and if you want to keep this non-synchronization,
+	you can save your result in separate csv files, or you can use a file format that support non-synchronized results
+	(e.g. save or saveBufferedBin).
+	Note: evt files (generated by the <span class="cmd">save</span> function) are easy to read in any language.
+</p>
+
+<p>
+	By default, the first column of the csv file will be the time.
+	You can remove this column by specifying the non-signal named parameter <span class="cmd">saveTime:false</span>.
+</p>
+
+<p>
+	If your channels are not synchronized, the missing value will be represented by "NA" in the csv file.
+	You can change the value of missing record with the non-symbol parameter <span class="cmd">naSymbol</span>.
+</p>
+
+<p>
+	If your channels are not synchronized, and if you want to replace NA values with the last observed value (if any),
+	you can specify the non-signal named parameter <span class="cmd">reuseLastValue:true</span>.
+</p>
+
+<p>
+	The function <span class="cmd">sample</span> is very useful with the <span class="cmd">saveBufferedCsv</span>
+	function.
+</p>
+
+<p>
+	Note that unlike the <span class="cmd">save</span> function,
+	the <span class="cmd">saveBufferedCsv</span> function needs to wait for the end of the program execution before
+	being able to start writing the csv file.
+	In other word, the <span class="cmd">saveBufferedCsv</span> function will keep a copy (in memory) of the result.
+	In large datasets, this might be an issue and using the <span class="cmd">saveCsv</span> function might be
+	preferable.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		saveBufferedCsv $a file:"output.csv"<br />
+		saveBufferedCsv $a file:"output.csv" naSymbol:0<br />
+		saveBufferedCsv $a file:"output.csv" reuseLastValue:true<br />
+		saveBufferedCsv $a file:"output.csv" reuseLastValue:true naSymbol:-1<br />
+		<br />
+		$b = tick 10<br />
+		$a = sample $a trigger:$b<br />
+		saveBufferedCsv $a file:"output.csv"
+	</div>
+</div>
+
+<h3>skip</h3>
+
+<p>
+	<span class="cmd">skip</span> skips the current record if the last record is less than a certain amount of time
+	away.
+	In other words, <span class="cmd">skip</span> down-samples the data.
+</p>
+
+<p>
+	Depending of the situation, <span class="cmd">skip</span> might be preferable to <span class="cmd">sample</span>.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		$a = skip $a 10<br />
+		# none of the channels in $a can have more than one record every 10 time units.
+	</div>
+</div>
+
+<p>Here is an example of <span class="cmd">skip</span> on the vital.csv dataset.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@data input:"data/vital.csv" output:"result.evt"<br />
+		$all = echo "#.*"<br />
+		$a = filter $all "Airway_pressure"<br />
+		$b = skip $a 2<br />
+		save $b file:%output
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/skip.png">
+	</div>
+</div>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

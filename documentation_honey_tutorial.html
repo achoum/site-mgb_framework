@@ -1,0 +1,1072 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a class='selected' href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#introduction'>Introduction</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#runningScript'>Running a script</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#lookingAtResults'>Looking at the result</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#commentaries'>Comments</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#Line syntax'>Line syntax</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#signalVariables'>Signal variables</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#nonSignalVariables'>Non-signal variables</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#polishNotationEquation'>Polish Notation Equations</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#nonTailingOperators'>Non-tailing operators</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#channelNaming'>Channel naming</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#mostUsfulOperators'> The most useful operators</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#inputAndOutputFormat'>Input and output file format</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#alternativeInput'>Alternative input dataset definition</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#handlingEntities'>Handling entities</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#runningModes'>Running modes</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial.html#flowProgramming'>Pseudo-flow programming</a></ul></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Honey | [Outdated] Tutorial</h1><h2 id="introduction">Introduction</h2>
+
+<p>Honey is a small but high level, flow oriented, declarative programming language designed to facilitate the
+	pre-processing and analysis of symbolic and numerical time series and sequence datasets.</p>
+
+<p>A script is a text file with the ".tit" extension. A script defines a list of operations to apply on a dataset (or a
+	set of datasets). Each line defines one operation to apply on the dataset. Each operation takes one or several input
+	signals, and produces one or several output signals. You will see that some operations do not require any input
+	(e.g. the calendar change point generation operation, reading of keyboard) and some other do not produce any signal
+	output (e.g. the write to file operation, printing on screen).</p>
+
+<p>
+	Opposite to most programming languages, Honey does not have conditional and loop keywords. A script defines a flow
+	of operations. Each operation processes its input, and produces some output that will be sent to some other
+	operations. Instead of IF statements, Honey has several operations which filter data. It might seem strange, but you
+	will see that it makes the scripting very clear. Additionally, due to this structure, a script can be seamlessly
+	applied on a static dataset or on an online/continuous data flow.
+</p>
+
+<p>
+	While Honey has its own particular syntax (that you will lean in this tutorial), you can use any editor configured
+	with the Perl syntax coloration to help in Honey script reading.
+</p>
+
+<p>Honey supposes input and output datasets to be Symbolic and Scalar Time Sequence (SSTS). A SSTS is composed of
+	<i>channels</i>. Each channel is associated with a <i>name</i> (also called channel symbol) and a set of
+	<i>records</i>. Each record is associated with a <i>timestamp</i> (represented as a double precision floating point
+	number) and a <i>value</i> (represented as a single precision floating point number).
+</p>
+
+<p>The following table shows an example of SSTS with three channels. Each record is represented by (x,y) where x is the
+	time-stamp and y is the value.</p>
+
+<table class="nicetable">
+	<tr>
+		<th>
+			Symbol
+		</th>
+		<th>
+			Records
+		</th>
+	</tr>
+
+	<tr>
+		<td>e1</td>
+		<td> (15.81,1) (16,1)</td>
+	</tr>
+
+	<tr>
+		<td>s1</td>
+		<td>(5.,-5.1) (20.,5.2) (28,12) (28,13)</td>
+	</tr>
+
+	<tr>
+		<td>s2</td>
+		<td>(1.,1.1) (2.,1.1) (5.81,12) (12,-1)</td>
+	</tr>
+
+</table>
+
+<p>Each SSTS channel is either an <i>event</i> or a <i>scalar</i>. Both types are stored similarly and only differ in
+	the way the user wants to interpret them. Events generally represent change-points, while scalars generally
+	represent regularly (or semi-regularly) sampled measurements. We will also talk about <i>status</i> channels. A
+	status channel is a scalar channel that can only have the value 0 or 1.</p>
+
+<p>SSTS can be represented graphically (see figure 1).</p>
+
+<div class="figure">
+	<div class="content">
+		<img src="documentation/honey/pictures/ssts.png">
+	</div>
+	<div class="label">
+		Fig 1: Example of Symbolic and Scalar Time Sequence (SSTS) with two types of event channels (e1 and e2) and two
+		types of scalar channels (s1 and s2).
+	</div>
+</div>
+
+<p>You might be familiar with multi-variate time series. This well-known representation is a special case of SSTS.
+	Therefore, Honey can be used to process multi-variate time series.</p>
+
+<p>SSTS are used to represent a large variety of phenomena. For example, an event channel can be used to indicate the
+	purchase of an item, the activation of a sensor, or the start of a new day. Similarly, a scalar channel can be used
+	to count the number of purchases of an item in the last 2 hours, the current temperature, or the numerical value of
+	the current hour.</p>
+
+<p>The simplest and most used file format to store time series is certainly the CSV format. A .csv file is a text file
+	that represent a two dimensional array. The first column of the array contains a list of timestamps while the other
+	columns contain the numerical values of the different scalar channels for each timestamp.</p>
+
+<p>The .csv format is very convenient to store and exchange datasets; It is simple to write and read, and it is
+	supported by many versions of software. However, .csv files require all channels to be synchronized, and
+	reading/writing to .csv is a slow operation, in comparison to more optimized binary formats. While CSV is a good
+	first candidate, this tutorial also present several other formats supported by Event Script.</p>
+
+<h2 id="runningScript">Running a script</h2>
+
+<p>To execute a script, the Honey binary should be executed with the path to the script file as first argument. The file
+	path of the input dataset is optional and can be specified with the "--input" argument. An empty file is acceptable.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example (in the command line)
+	</div>
+	<div class="content">
+		honey my_script.tit --input dataset.csv
+	</div>
+</div>
+
+<p>Several "--input" arguments can be provided in a single call. In this case, all the input will be merged together
+	before the script is applied.</p>
+
+<div class="example">
+	<div class="title">
+		Example (in the command line)
+	</div>
+	<div class="content">
+		honey my_script.tit --input dataset_part1.csv --input dataset_part2.csv
+	</div>
+</div>
+
+<p>The output are specified inside of the script (with the operator "save" for example). However, we will see later how
+	to specify the output path from the command line using variables.</p>
+
+<p>The "--graph" option is a very useful option for Honey to generate a PNG picture, graphically representing the
+	script. GraphViz (<a href="http://www.graphviz.org/" target="_blank">http://www.graphviz.org/</a>) needs to be
+	installed on your computer to use this option. This feature is very useful to read and understand large scripts. The
+	following figure shows the graphical representation of a script. You do not have to try to understand the script
+	right now.</p>
+
+<div>
+	<table style="margin:auto;">
+		<tr>
+			<td>
+
+				<div class="example">
+					<div class="title">
+						Example of script
+					</div>
+					<div class="content">
+						$A = echo "price"<br />
+						$A += sma $A 10<br />
+						$A += sma $A 20
+					</div>
+				</div>
+
+			</td>
+			<td style="padding:20px;">
+				Becomes
+			</td>
+			<td>
+
+				<div class="figure" style="margin:0px;">
+					<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+						<img src="documentation/honey/pictures/flow.png">
+					</div>
+				</div>
+
+			</td>
+		</tr>
+	</table>
+</div>
+
+<p>If you use the honey script editor included with Event Viewer, you will see the script graph representation on the
+	right of your script:</p>
+
+<p style="text-align: center;">
+	<img src="documentation/honey/pictures/intro.png">
+</p>
+
+
+<h2 id="lookingAtResults">Looking at the result</h2>
+
+<p>During the writing of a complex script, it is advised to look and plot the intermediate and final results to ensure
+	of the correctness of the script.
+	Many plotting softwares are available for this task (e.g. GnuPlot, R, R+ggplot, Matlab, Python+Matplotlib, etc.).
+	We however recommend the use of the Event Viewer software available <a href=".">here</a>.</p>
+
+<p>Here are some of the many features that make Event Viewer a good candidate to visualize Honey results:</p>
+
+<ul>
+	<li>Event Viewer supports all output formats of Honey (event the binary format).</li>
+	<li>It can load and display very large datasets (in comparison to other plotting software).</li>
+	<li>It allows simple and efficient data "navigation" with the mouse (zooms, translation, anchor, etc.).</li>
+	<li>Event Viewer's display is highly configurable.</li>
+	<li>Only one-click is necessary reload the result of a script.</li>
+</ul>
+
+<div class="figure">
+	<div class="content">
+		<a href="documentation/honey/pictures/ev.png" target="_blank">
+			<img src="documentation/honey/pictures/ev_small.png">
+		</a>
+	</div>
+	<div class="label">
+		Fig 2: Screen shot of Event Viewer (click to enlarge).
+	</div>
+</div>
+
+<h2 id="commentaries">Comments</h2>
+
+<p>Each empty line or line starting with the character, "#", is considered a comment and will not be executed.</p>
+
+<div class="example">
+	<div class="title">
+		Example of script file
+	</div>
+	<div class="content">
+		# This is a comment
+	</div>
+</div>
+
+<h2 id="Line syntax">Line syntax</h2>
+
+<p>Each (non-comment) line is composed of an operator name followed by a list of anonymous arguments for the operator,
+	followed by a list of named arguments.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# A command with a single anonymous argument<br />
+		derivative "price"<br />
+		<br />
+		# A command with two anonymous arguments<br />
+		sma "price" 50<br />
+		<br />
+		# A command with two anonymous arguments and a named argument<br />
+		sma "price" 50 trigger:"alert"
+	</div>
+</div>
+
+<p>Depending on the operators, some anonymous/named arguments can be optional. If they are not specified, they will be
+	assigned to a default value.</p>
+
+<p>Named arguments can be specified in any order. However the order of the anonymous arguments is important.</p>
+
+<p>Honey allows two types of arguments.</p>
+<ul>
+	<li>A signal argument takes a single (or a list of) channels.</li>
+	<li>A non-signal argument takes a string or numerical value.</li>
+</ul>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# Apply a "simple tailing moving average" (or sma) on the time series called "price" with a time window of 50
+		time units.<br />
+		sma "price" 50
+	</div>
+</div>
+
+<p>The sma operator accepts two anonymous arguments. The first one is a signal argument. The second one is a non-signal
+	numerical argument.</p>
+
+<p>The quotations around arguments are optional. They are mostly useful when argument names contain spaces.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# The three following lines are equivalent<br />
+		sma "price" 50<br />
+		sma price 50<br />
+		sma price "50"<br />
+	</div>
+</div>
+
+<p>Operations as well as their arguments are described in the <a href="functions.html" target="_blank">Function
+		reference</a>.</p>
+
+<h2 id="signalVariables">Signal variables</h2>
+
+<p>Honey supports two types of variables</p>
+
+<ul>
+	<li>A signal variable (starting with $) contains a list of named channels.</li>
+	<li>A non-signal variable (starting with %) is either a string or a numerical value.</li>
+</ul>
+
+<p>Signal variables are used to connect operations together. Signal variables can be seen as "pipes": On one side, one
+	or several operations put signals into the pipe. On the other side, other operations continuously will get from
+	these signals. While not entirely accurate, a signal variable can be seen as a container of signal for static script
+	execution: Some operations put signal in a variable. Next, other operations will take and process these signals.</p>
+
+<p>Piping the result of an operation into a variable is done with the "=" keyword.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# Compute a sma and pipe/store the results in the variable $A<br />
+		$A = sma "price" 50
+	</div>
+</div>
+
+<p>The result of an operator can also be aggregated to a signal variable with the operator "+=".</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# Compute two SMAs and store/pipe the results in the variable $A<br />
+		$A = sma "price" 50<br />
+		$A += sma "price" 100
+	</div>
+</div>
+
+<p>At the end of the previous example, $A contains two channels: the result of the two "sma's". Note: the two "sma's"
+	results are not numerically added together.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		# Use the sma results as input for the ema.<br />
+		$A = sma "price" 50<br />
+		$B = ema $A 10
+	</div>
+</div>
+
+<p>When supplied with a list of channels, most operations will be applied independently on each channels.</p>
+
+<h2 id="nonSignalVariables">Non-signal variables</h2>
+
+<p>Non-signal variables are used to store non-signal arguments.</p>
+
+<p>Setting a non-signal variable is done with the "set" operator.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		set %window 50<br />
+		$A = sma "price" %window
+	</div>
+</div>
+
+<p>Non-signal variables can be defined through the command line with the "--option" argument.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		honey my_script.txt --option window:50
+	</div>
+</div>
+
+<p>Passing non-signal variable with "--option" keyword can be used to specify the path of the output files in the
+	command line.</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		*Script*<br />
+		Save $result file:%output<br />
+		<br />
+		*Command line*<br />
+		honey my_script.txt --input "input.evt" --option output:"output.evt"
+	</div>
+</div>
+
+<h2 id="polishNotationEquation">Polish Notation Equations</h2>
+
+<p>Non-signal arguments can be specified by an equation in Polish notation. Numerical Polish notation equations start
+	with "=". String Polish notation equations start with "&".</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		#The following two lines are equivalent<br />
+		sma "price" 30<br />
+		sma "price" =10,3,*<br />
+		<br />
+		# The next following two lines are equivalent<br />
+		save "price" file:"output.evt"<br />
+		save "price" file:&output,.evt,+
+	</div>
+</div>
+
+<p>Available numerical operators are: +, *, -, /, >, <,=, ^,>=, <=, !=, if, sin, cos, tan, log, rand, asin, acos, atan
+			and sqrt. Available string operators are: +.</p>
+
+			<p>Honey supports Polish Notation for both specifying arguments value, but also to define operations on
+				signal (see "eq" and "passIf" operations)</p>
+
+			<h2 id="nonTailingOperators">Non-tailing operators</h2>
+
+			<p>Honey operators are tailing operators. In other word, not operators can return at time t, a value
+				computed with data from t' with t' > t.</p>
+
+			<p>The only exception to this rule is the "echoPast" that can "send data in the past". Note that the
+				echoPast function does not work in online streaming execution.</p>
+
+			<p>This constraint ensures that a script runs the same way both online or on completed data.</p>
+
+			<h2 id="channelNaming">Channel naming</h2>
+
+			<p>Each channel of a SSTS is attached to a name. Different variables can contain a same channel, and
+				different variables can contains different channels with the same name.</p>
+
+			<p>The result of most operators is returned as a channel or a list of channels. The names of the result
+				channels are automatically generated according the input channel names, operator name and operator
+				arguments.</p>
+
+			<p>For example, the result of applying the sma operator with a parameter of 30 time units on the channel
+				"price" will be named "price_sma[30]".</p>
+
+			<p>Generated names generally have the following structure: {original channel name}_{operator name}[{argument
+				values}].</p>
+
+			<p>Channel names can be changed with the "rename" and "renameRegexp" operators.</p>
+
+			<p>The "rename" operator changes the name of a channel (or a list of channels) to a new given name.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					# Compute a sma of price and rename the channel as "toto" (instead of "price_sma[30]").<br />
+					$A = sma "price" 30<br />
+					$A = rename $A "toto"
+				</div>
+			</div>
+
+			<p>Note that if several channels are provided as input, an error will be raised. However, if the option
+				"keepAll:true" is specified, no error will be raised and all the input channels will be merged together.
+			</p>
+
+			<p>RenameRegexp changes the name of a channel (or a list of channel) to a new name defined by a string
+				replacement regular expression.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					# Grab three channels into $A<br />
+					$A = echo "price_corn"<br />
+					$A += echo "price_tomato"<br />
+					$A += echo "price_orange"<br />
+					<br />
+					# Compute the sma for each of the three channels.<br />
+					$B = sma $A<br />
+					<br />
+					# Rename the results of the sma from "price_corn_sma[30]", "price_tomato_sma[30]" and
+					"price_orange_sma[30]" to "30_toto_corn", "30_toto_tomato" and "30_toto_orange".<br />
+					<br />
+					$C = renameRegexp $B "price_([a-z]+)_sma\[(0-9)+\]" "$2_toto_$1"
+				</div>
+			</div>
+
+			<h2 id="mostUsfulOperators"> The most useful operators</h2>
+
+			<p>The most basic (and useful) operators are: echo, print, sma, filter, save and saveBufferedCsv.</p>
+
+			<h3>Echo</h3>
+			<p>Echo just repeats a signal (or a set of signals). It is mostly used to branch "pipes" together. Echo is
+				also generally use at the beginning of a script to "catch" channels by their name, and put them into
+				pipes. Finally, if echo's argument starts with the character #, the argument is considered as a regular
+				expression applied on all available channels in memory. In this way, a single echo can be used to
+				capture several (or all) channels. To avoid infinite cycles in pipes, it is generally recommended to use
+				echo at the beginning of the script in order to catch all the input signals into a single variable, and
+				then to use this variable in the script.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					$A = echo "price"<br />
+					$A += echo "#price_.*"<br />
+					$B = echo $A<br />
+					<br />
+					# Select all the channels in memory (so far) -- this can generate duplicates.<br />
+					$ALL = echo #.*
+				</div>
+			</div>
+
+			<h3>Print</h3>
+			<p>"Print" displays (in the console) the name and statistics of the time sequences inside of a signal
+				variable. An optional label argument allows to "label" the output. If every:true, all of the events of
+				the time sequence are individually printed.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					print $A<br />
+					print $A label:"The content of the variable $A"<br />
+					print $A every:true
+				</div>
+			</div>
+
+			<h3>Filter</h3>
+			<p>Filters the channels coming from a signal variable with a regular expression.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					$A = echo "price"<br />
+					$A += echo "amount"<br />
+					# $A contains "price" and "amount"<br /><br />
+					$B = filter $A "p.*"<br />
+					# $B only contains "price"<br /><br />
+
+					# The two following lines are equivalent<br />
+					$A = echo #[0-9]*<br />
+					$A = filter #.* [0-9]*
+				</div>
+			</div>
+
+			<h3>sma (simple moving average)</h3>
+			<p>Sma computes a tailing simple moving average.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					$A = sma "price" 50
+				</div>
+			</div>
+
+			<p>Sma has two additional optional parameters.</p>
+
+			<ul>
+				<li><i>minNumObs</i> (default value of 6) defines the minimum number of observations allowed to compute
+					the moving average. If less than this number of observations are available, no result will be
+					returned.</li>
+				<li><i>trigger</i> takes as input a signal and will force the sma operator to only compute an output
+					when a trigger signal is provided. By default, the sma operator produces a new output whenever it
+					receives an input.</li>
+			</ul>
+
+			<h3>SaveBufferedCsv</h3>
+			<p>SaveBufferedCsv saves the content of a signal variable to a CSV file.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					saveBufferedCSV $A file:output.csv
+				</div>
+			</div>
+
+			<p>Note that if all channels are not synchronized, the csv will be filled with "NA" values. Additionally,
+				since all channel names need to be available to write the csv header, this operation will keep a full
+				copy of the exported data in memory until the end of the script execution where the csv file is written.
+			</p>
+
+			<h3>Save</h3>
+			<p>Saves the content of a signal variable to a Evt file.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					save $A file:output.evt
+				</div>
+			</div>
+
+			<p>Unlike saveBufferedCSV, save writes immediately the signal in the file, and remove it from memory.</p>
+
+
+			<h2 id="inputAndOutputFormat">Input and output file format</h2>
+
+			<p>Honey support four dataset formats.</p>
+
+			<h3>CSV format</h3>
+
+			<p>A .csv file is a text file that represent a two dimensional matrix. The first column contains timestamps
+				while the other columns contain the numerical values of the different channels for each timestamps.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					Time price_orange price_apple<br />
+					0 10 11<br />
+					2 10.5 11.1<br />
+					3.1 10.4 NA
+				</div>
+			</div>
+
+			<p>CSV requires all the channels to be synchronized.</p>
+
+			<h3>EVT format</h3>
+			<p>A .evt file is a text file where each line specifies an event or scalar update. Each line is {time stamp}
+				{signal name} {signal value}.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					0 price_orange 10<br />
+					0 price_apple 11<br />
+					2 price_orange 10.5<br />
+					2 price_apple 11.1
+				</div>
+			</div>
+
+			<p>EVT format is especially useful when channels are not synchronized.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					0 price_orange 10<br />
+					1 price_apple 5<br />
+					1.1 price_orange 11.1<br />
+					5.2 price_apple 2
+				</div>
+			</div>
+
+			<h3>BIN format</h3>
+			<p>A .bin file is a compact binary encoding of a .evt file. The binary format is faster to read and write
+				than the EVT and CSV formats. For this reason, the binary format is preferable in large datasets. Like
+				the EVT format, the bin format handles naturally non-synchronized channels.</p>
+
+			<h3>SEVT format</h3>
+
+			<p>An .sevt is a text file containing paths to other datasets files.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					dataset dataset1.csv<br />
+					dataset dataset2.csv<br />
+					dataset dataset3.evt<br />
+					flush true<br />
+				</div>
+			</div>
+
+			<p>The "dataset" commands accept three options. The first option is the path to the dataset. The second
+				option (optional) is a prefix to add to each channel names. The last option (also optional) is a regular
+				expression to filter the channel to load in memory</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					dataset dataset1.csv prefix1.<br />
+					dataset dataset2.csv prefix2.<br />
+					dataset dataset3.evt prefix3. (dog|cat)_.*<br />
+					flush true<br />
+				</div>
+			</div>
+
+			<p>If several groups of datasets are separated by the "flush" command, the dataset times will be shifted so
+				that different groups do not overlap.
+				The "sequence" options allows you to define the channels "sequence" and "end_sequence" that will be set
+				at the beginning and end of each group.
+				The time distance between groups is defined with the "minoffset" options.
+				Note that if the dataset contains several "groups", you should use "flush" instead of "flush true".
+			</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					minoffset 3600<br /><br />
+					sequence 1<br />
+					dataset group1_dataset1.csv<br />
+					dataset group1_dataset2.csv<br />
+					flush<br /><br />
+					sequence 2<br />
+					dataset group2_dataset1.csv<br />
+					dataset group2_dataset2.csv<br />
+					flush<br />
+				</div>
+			</div>
+
+			<p>By default, dataset path are relative to the current directory of the running process. </p>
+
+			<p>The .sevt format supports many more options that will be described later. Instead, you can specify for
+				the path to be relative to the .sevt file path with the option "basepath relative".</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					basepath relative<br />
+					dataset dataset.csv<br />
+					flush<br />
+				</div>
+			</div>
+
+			<p>You can also specify dataset records in the .sevt file itself with the "event" command. This feature
+				should be reserved to load structural events. The syntax is "event {time} {symbol} {value}". Note that
+				the time will be shifted the same way at the datasets from the "dataset" command. The time can also be
+				the string "begin" or "end". In this case, the time value is set for the event to be the first (or the
+				last) event between the previous and next "flush" commands.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					basepath relative<br />
+					minoffset 3600<br /><br />
+					sequence 1<br />
+					dataset group1_dataset1.csv<br />
+					dataset group1_dataset2.csv<br />
+					event 0 this_is_at_time_0 1<br />
+					event begin this_is_the_beginning_of_sequence_1 1<br />
+					event end this_is_the_end_of_sequence_1 1<br />
+					flush<br /><br />
+					sequence 2<br />
+					dataset group2_dataset1.csv<br />
+					dataset group2_dataset2.csv<br />
+					event begin this_is_the_beginning_of_sequence_2 1<br />
+					event end this_is_the_end_of_sequence_2 1<br />
+					flush<br />
+				</div>
+			</div>
+
+			<h2 id="alternativeInput">Alternative input dataset definition</h2>
+
+			<p>By default, the input datasets are defined through the command line with the "--input" options.
+				Symmetrically, the output datasets are defined in the script with the saving operators.
+				To clarify the script, the user can also specify the input and output dataset at the beginning of the
+				script with the "AUTODATASET" operator. Autodataset also allows applying script on directories. In this
+				case, the script will be applied iteratively on each file of the directories, and the result for each
+				file will be saved in a separate file. The path of the output file will be automatically put into the
+				%output non-signal variable.</p>
+
+			<p>AUTODATASET requires three named options (the last one is optional).</p>
+
+			<ul>
+				<li>Input: Define the input file path or input directory path.</li>
+				<li>Output: Define the output file path or output directory path.</li>
+				<li>Extension: Define the output extension in Output is a directory.</li>
+			</ul>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					AUTODATASET input:"input.csv" output:output.evt<br />
+					save $B file:%output
+				</div>
+			</div>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					AUTODATASET input:"data/" output:"results/" extension:evt<br />
+					save $B file:%output
+				</div>
+			</div>
+
+			<h2 id="handlingEntities">Handling entities</h2>
+
+			<p>Many datasets contain an "entity" structure. Such datasets are composed of several SSTS, each of them
+				describing a same phenomenon for different entities. As an example, we can suppose a dataset about cars
+				where, for each car, the dataset contains a record of actions (getting fuel, go to the repair shop). In
+				this dataset, cars are "entities".</p>
+
+			<p>Honey can handle entity datasets in two ways. Depending on the dataset, one way is generally obviously
+				preferable to the other.</p>
+
+			<p>The first way is to treat each entity independently. In this case, the dataset of each entity should be
+				located in a separate file all in a same directory. Then, Honey can be used with this directory as
+				input. In this configuration, each file/entity will be treated one-by-one and independently.</p>
+
+			<p>This solution is useful when there are not interactions between entities, if the number of entities is
+				small (e.g. less than 10000) and if the dataset of each entity is large.</p>
+
+			<p>The second solution is to glue the record of all the entities one after the other. This can be done
+				automatically using the .sevt format and the "sequence" key word. A special symbol can be used to
+				indicate the separation between entities.</p>
+
+			<p>This last solution is very efficient, especially for sparse datasets containing a large number of
+				entities. It also allows both to perform analysis for each entity, and for all the entities together.
+			</p>
+
+			<p>The following example shows how to use the second method to create a .csv file that will contain for each
+				entities the number of record and the mean of the signals A, B and C.</p>
+
+
+			<div class="example">
+				<div class="title">
+					Example : Sevt file : dataset.sevt
+				</div>
+				<div class="content">
+					basepath relative<br />
+					minoffset 1000<br />
+					<br />
+					sequence 1<br />
+					dataset entity_1.csv<br />
+					flush<br />
+					<br />
+					sequence 2<br />
+					dataset entity_2.csv<br />
+					flush<br />
+				</div>
+			</div>
+
+			<br /><br />
+
+			<div class="example">
+				<div class="title">
+					Example : Script file : script.tit
+				</div>
+				<div class="content">
+					AUTODATASET input:"dataset.sevt" output:"result.csv"<br />
+					$ALL = echo #.*<br />
+					$END_OF_ENTITY = filter $ALL "sequence_end"<br />
+					$SIGNALS = filter $ALL (A|B|C)<br />
+					<br />
+					$RESULT = count $SIGNALS 1000 trigger:$END_OF_ENTITY<br />
+					$RESULT += sma $SIGNALS 1000 trigger:$END_OF_ENTITY<br />
+					$RESULT += echo $END_OF_ENTITY<br />
+					<br />
+					saveBufferedCsv $RESULT file:%output
+				</div>
+			</div>
+
+			<h2>Report operators</h2>
+
+			<p>Most operators consume data and produce output in a greedy fashion (e.g. sma, sd). Some other operators
+				(called "report" operators) only output data at the end of the script execution. These operators
+				generally compute metrics about the entire dataset. These operators can return any type of data (.csv
+				file, text, pictures, etc.). These operators can generally only be applied in static mode. Their names
+				start with "report_" e.g. "report_implication". If a report operator returns data other than in the SSTS
+				format, it has an argument for the user to specify the output file.</p>
+
+			<p>Example of such operators are:</p>
+
+			<ul>
+				<li>
+					<b>report_amoc :</b> Compute the AMOC and Temporal ROC between a trigger signal and a target signal.
+					It also compute various "snap-shots".<br />
+
+					<div class="figure">
+						<div class="content">
+							<a href="documentation/honey/pictures/amoc.png" target="_blank">
+								<img src="documentation/honey/pictures/amoc_small.png">
+							</a>
+						</div>
+						<div class="label">
+							Example of AMOC
+						</div>
+					</div>
+
+				</li>
+
+				<li>
+					<b>report_histIntersectEventState :</b> Compute the distribution of a set of state variables sampled
+					according to a set of events.
+					<div class="figure">
+						<div class="content">
+							<a href="documentation/honey/pictures/report_hist.png" target="_blank">
+								<img src="documentation/honey/pictures/report_hist_small.png">
+							</a>
+						</div>
+						<div class="label">
+							Example of histIntersectEventState report
+						</div>
+					</div>
+				</li>
+
+				<li>
+					<b>report_histIntersectEventScalar :</b> Compute the distribution of a set of scalars sampled
+					according to a set of events.
+				</li>
+
+			</ul>
+
+			<h2 id="runningModes">Running modes</h2>
+
+			<p>Honey can be executed in three possible modes: Static, streaming and real-time streaming. The mode can be
+				specified by the "--mode" command line option. By default, the mode is set to STATIC.</p>
+
+			<p>The static mode (default) loads all the input dataset in memory, and applies each operation one after one
+				another. Intermediate results of operations are automatically discarded during the script execution as
+				soon as the algorithm detects that it will not be used anymore. Because each operation is applied one
+				after another, the static mode is very quick. The static mode is however not suited if the dataset is
+				too large to be loaded in memory.</p>
+
+			<p>The streaming mode greedily reads and processes a dataset input file line by line. This process is much
+				slower that the static mode, but it has very small memory consumption. For example, if applying of 10s
+				moving average on a signal using the streaming mode, at most 10s of signal will be kept in memory at any
+				time.</p>
+
+			<p>Finally, the real-time streaming mode works similarly to the streaming mode, but override the timestamps
+				with current computer clock value. This mode is suitable for real-time online analysis.</p>
+
+			<p>As an example, suppose the following program that will be executed in static and streaming mode.</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					<p>$A = sma "price" 10<br />
+					<p>$B = derivative $A<br />
+					<p>Save $B file:output.evt
+				</div>
+			</div>
+
+			<p><b>Static execution</b></p>
+
+			<ol>
+				<li>The dataset is loaded in memory</li>
+				<li>The "price" channel is selected, and a moving average is applied.</li>
+				<li>The derivative operator is applied on the moving average results.</li>
+				<li>The moving average is removed from memory because it will be not used anymore.</li>
+				<li>The result of the derivative is saved in the output.evt file.</li>
+				<li>The derivative results are fed from memory.</li>
+			</ol>
+
+			<p><b>Streaming execution</b></p>
+
+			<ol>
+				<li>The first line of the dataset is read as an event.</li>
+				<li>This first event is sent to the sma operator, who stores it and produces a result.</li>
+				<li>The results of the sma operator is sent to the derivative operator.</li>
+				<li>The result of the derivative operator is saved to the output.evt file</li>
+				<li>The second line of the dataset is read as an event.</li>
+				<li>...</li>
+			</ol>
+
+			<h2 id="flowProgramming">Pseudo-flow programming</h2>
+
+			<p>While the execution of Honey is done in flow, the parsing of the script file is interpreted sequentially.
+				Therefore, a single signal variable is not exactly equivalent to a single pipe.</p>
+
+			<p>This concept is illustrated in the following example :</p>
+
+			<div class="example">
+				<div class="title">
+					Example
+				</div>
+				<div class="content">
+					$A = echo "price"<br />
+					$A += sma $A 10<br />
+					$A += sma $A 20
+				</div>
+			</div>
+
+			<p>In this script, the variable $A refers to different flow pipes after each line of the script.</p>
+
+			<p>At the end of the script, $A contains "price", "price_sma[10]","price_sma[20]","price_sma[10]_sma[20]".
+			</p>
+
+			<p>This script is represented graphically by:</p>
+
+			<p style="text-align: center;">
+				<img src="documentation/honey/pictures/flow.png">
+			</p>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

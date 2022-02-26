@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a class='selected' href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_honey_beginnersGuide.html#overview'>Overview</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_beginnersGuide.html#gettingHoney'>Getting Honey</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_beginnersGuide.html#compilingHoney'>Compiling Honey</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_beginnersGuide.html#learningHoney'>Learning Honey</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_beginnersGuide.html#needHelp'>Need help?</a></ul><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Honey | Beginner guide</h1><h2 id="overview">Overview</h2>
+
+<p>Honey is a small, specialized, high level, efficient, flow-oriented, declarative programming language designed to
+	facilitate the pre-processing, post-processing, and analysis of time series (and more generally symbolic and scalar
+	time series and sequences).</p>
+
+<p style="text-align: center;">
+	<img src="documentation/honey/pictures/honey_editor.png">
+</p>
+
+<p>Honey is specifically and only designed to process temporal datasets.
+	For this reason, Honey will certainly not replace completely the existing programming language you are using to make
+	your analysis (e.g. R, MatLab, Python),
+	but it aimed to allow you to execute efficiently and quickly all the operations related to the time nature of your
+	data.</p>
+
+<p>A typical data analytics project will Honey will look like</p>
+<ul>
+	<li>[Optionally] Writing a script/sql query to export your data to a CSV file (or other Honey supported formats).
+	</li>
+	<li>[Optionally] Using Honey to restructure and convert this CSV file into a Honey binary file (for fast
+		computation).</li>
+	<li>Use Honey to "look" at your data, and make sure and better understand it (you would be surprised by the amount
+		of information that you can get on your data if you look at it with the good tools).
+	<li>Writing a Honey script, to clean your data, and make some analysis.</li>
+	<li>Use Honey Event Viewer to "look" at the result of your analysis. Export some plots or some videos.
+	<li>Writing a Honey script (this might be the same as the previous one), to export the results of your analysis
+		(e.g. some plots, tables, text files).</li>
+	<li>[Optionally] Use your favorite programming language to plot or to conduct some more non temporal analysis on the
+		tables that Honey has generated.
+</ul>
+
+<p>Some of Honey's notable features are:</p>
+
+<ul>
+	<li>Simple and compact syntax to make Honey programs quick and easy to read and write.</li>
+	<li>High level programming that abstract the complexity of dealing with <i>large</i> and <i>asynchronous</i> time
+		sequence datasets. Honey syntax is so simple that it does not have IF or FOR instructions.</li>
+	<li>Honey has large library of existing functions developed and validated through several large research projects
+		(medical, financial, fault detection, abnormality detection, etc.).</li>
+	<li>It natively support CSV files (Honey has also its own format which is more flexible and more efficient than
+		CSV).</li>
+	<li>When compiled, a Honey source file is transformed into a processing flow graph.
+		In this graph, each node represents an operation while each edge represents the input and output of each
+		operation.
+		The Honey binary contains a compiler of Honey program as well as several interpreters (with different
+		properties) of such processing flow graph.
+		This graph might be useful to understand complex Honey programs.</li>
+	<li>A program execution can be distributed on several computers (TCP computation distribution).</li>
+	<li>Honey comes with its own editor.</li>
+	<li>A program can be written and executed seemingly on static or online real time datasets.</li>
+	<li>Honey can be interfaced with Event Viewer for static and online real time visualization of the results.</li>
+	<li>The syntax naturally forbids the use of future data to produce result in the past (unless explicitly forced). In
+		other words, Honey's syntax guarantees that a script produces similar results on both static and online
+		streaming datasets.</li>
+	<li>A program can be executed greedily for large datasets that would not fit in memory.</li>
+	<li>For not greedily execution (the dataset can fit in memory), Honey runs a garbage collector mechanism that ensure
+		that only the intermediate results necessary for remaining computation are kept in memory.</li>
+	<li>Integrates to other projects with an easy to use API.</li>
+	<li>Easy to implement new functions (either as a script function or a new C++ class).</li>
+</ul>
+
+<h2 id="gettingHoney">Getting Honey</h2>
+
+<p>Your next step is to install Honey on your computer. Honey source code and pre-compiled binaries are available on the
+	<a href="download.html">download page</a>.
+</p>
+
+<p>If you want to use Honey with Window, it is likely that you will have to download and install both the "OpenCV DLL
+	Pack for Window" and the "Visual Studio 2013 DLLs" available on the <a href="download.html">download
+		page</a>.</p>
+
+<p>Honey binaries are available in the "Honey/bin" directory. This directory also contains the Honey Editor and Event
+	Viewer.</p>
+
+<p>To ease the use of Honey, it is recommended to put the "Honey/bin" directory in the PATH of your OS. After which, you
+	will be available to execute Honey directly from the command line.</p>
+
+<p>Note that if you try to run honey without arguments, honey will display its command line reference documentation and
+	terminate instantaneously. Honey is meant to be used in a console, or through the use of the Honey Editor.
+<p>
+
+<p>Honey can also produce graph plots. Will this is not a requirement; Honey graph plots are very useful to help the
+	understanding of a Honey program.
+	To use Honey graph plot capabilities, you need to install the GraphViz software tool (<a
+		href="http://www.graphviz.org/" target="_blank">http://www.graphviz.org/</a>).
+</p>
+
+<h2 id="compilingHoney">Compiling Honey</h2>
+
+<p>The Honey package also contains Honey source code. Note that Honey has been successfully compiled on Visual Studio
+	and GCC 5.</p>
+
+<p>Since the Honey package already contains Linux and Window pre-compiled binaries, compiling Honey is not interesting
+	for beginner users.</p>
+
+<p>
+	The Makefile is available in the "Honey" directory.
+	The Visual Studio project is available in the "Honey/project" directory.
+</p>
+
+<p>Compiling Honey requires the following libraries:</p>
+
+<table class="nicetable">
+	<tr>
+		<th>Library</th>
+		<th>Window download location</th>
+		<th>Linux repository name</th>
+	</tr>
+
+	<tr>
+		<td>Boost C++</td>
+		<td><a href="http://www.boost.org/" target="_blank">Website</a></td>
+		<td>libboost-dev</td>
+	</tr>
+
+	<tr>
+		<td>OpengCV</td>
+		<td><a href="http://opencv.org/" target="_blank">Website</a></td>
+		<td>libopencv2-dev</td>
+	</tr>
+
+	<tr>
+		<td>TiCpp</td>
+		<td>Inside of the Event Script project</td>
+		<td>Inside of the Event Script project</td>
+	</tr>
+
+	<tr>
+		<td>Ncurses</td>
+		<td>Not needed -- Linux only</td>
+		<td>libncurses-dev</td>
+	</tr>
+
+</table>
+
+<h2 id="learningHoney">Learning Honey</h2>
+
+<p>Your next step is to real the Honey tutorials organized into three sections: Beginner, intermediate and advanced.</p>
+
+<ul>
+	<li><a href="documentation_honey_tutorial_beginner">Beginner tutorial</a></li>
+	<li><a href="documentation_honey_tutorial_intermediate">Intermediate tutorial</a></li>
+	<li><a href="documentation_honey_tutorial_advanced">Advanced tutorial</a></li>
+	<li><a href="documentation_honey_importer">Dirty csv importer</a></li>
+	<li><a href="documentation_honey_api">Honey API</a></li>
+</ul>
+
+<p>After having read and experimented with the tutorials, you can read:</p>
+
+<ul>
+	<li><a href="documentation_honey_functions">Honey function reference</a></li>
+	<li><a href="documentation_honey_command">Honey command line syntax reference</a></li>
+	<li><a href="documentation_eventviewer_beginnersGuide">Event Viewer beginner guide</a></li>
+</ul>
+
+<h2 id="needHelp">Need help?</h2>
+
+<p>In case of questions or problems, contact me at .</p>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

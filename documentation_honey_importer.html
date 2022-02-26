@@ -1,0 +1,341 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><li class='sublevel'><a class='selected' href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_honey_importer.html#introduction'>Introduction</a></ul><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Honey | Tutorial | Dirty CSV Importer</h1><h2 id="introduction">Introduction</h2>
+
+<p>
+	Honey (as well as the entire MGB framework) supports several formats of files.
+	For more details about the supported formats, refers to the <a
+		href="documentation_honey_tutorial_intermediate#file_format">file format</a> section in the intermediate
+	tutorial.
+	Honey supports csv files, but these files need to have a specific structure:
+	The time is the first column, and all attributes are numerical.
+	Additionally, the record of each independent entities (if there are several such entities) should be separated into
+	several files,
+	or use the <a href="documentation_honey_tutorial_intermediate#file_format">"Titarl trick"</a>.
+	If your csv files does not have this structure, you can use the dirty csv importer of the Honey tool box to convert
+	this "dirty" csv into a csv that Honey can handle.
+	The dirty csv importer supports csv files with:
+</p>
+
+<ul>
+	<li>
+		Time expressed in many formats (including text e.g. "2007-03-15")
+	</li>
+
+	<li>
+		Categorical attributes.
+	</li>
+
+	<li>
+		Entities (i.e. several independent SSTS with similar structures)
+	</li>
+
+</ul>
+
+<p>The table bellow shows an example of two related "dirty" Csv files.</p>
+
+<div class="example">
+	<div class="title">
+		Example : Dirty csv records (data.csv)
+	</div>
+	<div class="content" style="font-size: 90%; line-height:1;">
+		"DATE","JOBCODE","SHOP","PLATE","MALCODE","CITY","DISC","ACTION","MAINT_TYPE","TYPE","DEFECT"<br />
+		2007-03-15,"469","SEAT_466","GF_94669",70,"Seattle",24,"removed","10_000_mile_inspection","minivan","A"<br />
+		2008-04-16,"469","CHIC_456","GF_94669",70,"Chicago",24,"removed","10_000_mile_inspection","minivan","A"<br />
+		2008-04-16,"469","CHIC_456","GF_94669",70,"Chicago",24,"removed","10_000_mile_inspection","minivan","A"<br />
+		2007-01-02,"3996","CHIC_617","GF_94669",70,"Chicago",24,"removed","10_000_mile_inspection","minivan","A"<br />
+		2007-01-03,"3996","CHIC_617","GF_94669",70,"Chicago",24,"removed","10_000_mile_inspection","minivan","A"<br />
+		2007-01-04,"3996","CHIC_617","GF_94669",70,"Chicago",24,"removed","10_000_mile_inspection","minivan","A"<br />
+		...
+	</div>
+</div>
+
+<div class="example">
+	<div class="title">
+		Example : Dirty csv static information (data_static.csv)
+	</div>
+	<div class="content" style="font-size: 90%; line-height:1;">
+		"PLATE","MODEL","TYPE","COLOR"<br />
+		"GF_94669","RENAULT","R21","BLUE"<br />
+		"BX_9459","NISANE","350Z","BLACK"<br />
+		...
+	</div>
+</div>
+
+<p>
+	This file data.csv describes an historical record of "maintenance operations" (e.g. reparation, inspection) on a set
+	of vehicles.
+	Vehicles identified by their "PLATE" and they are considered independent.
+	Each row represents a single operation on a specific vehicle.
+	Various information are available for each operation, including the location, date and operation details.
+	Additionally, for each vehicles, various static information are available and stored in a second Csv file:
+</p>
+
+<p>
+	The second file data_static.csv describes "static" information about each vehicle i.e. information that does not
+	change with time.
+</p>
+
+<p>
+	The importer has one constraint for it input dirty Csv file:
+	Because the Honey importer works in a greedy way (the entire dataset is never entirely loaded in memory), the
+	records should be grouped entities by entities.
+	If your Csv file is not grouped this way, you can use the "sort" shell command (on linux or cygwin) to order it.
+	In the previous example, if your csv file was not sorted, we could do it with the command <span class="cmd">sort
+		-t',' -k4 -o data_sorted.csv data.csv</span>.
+</p>
+
+<p>
+	When importing a csv file, several parameters should be specified (e.g. format of the type, way to process each
+	column).
+	To do so, you will write a configuration text file that include (non exaustive):
+</p>
+
+<ul>
+	<li>The path to the input and output files.</li>
+	<li>Format of the output file (bin, evt, sevt, etc.).</li>
+	<li>Various optional filtering on the entities or records (max rows, max entities, min number of records by
+		entities, forbidden value, etc.).</li>
+	<li>Which column represent the time, and how to interpret it.</li>
+	<li>Which column represent the entity id.</li>
+	<li>Which and how each column (or group of columns) should be exported (e.g. event, scalar, state).</li>
+	<li>Optionally, the location of an another csv file representing static information about the entities (e.g. type of
+		car, purchase date).</li>
+</ul>
+
+<p>The configuration file for the Csv importer is a plain text file. The following example shows an example of such
+	configuration file for the Csv file shown above.
+	Once the configuration file is ready, use the following command to start the importation : <span class="cmd">honey
+		--tool:import config.cfg</span>.</p>
+
+<div class="example">
+	<div class="title">
+		Example : Configuration text file (config.cfg)
+	</div>
+	<div class="content" style="font-size: 90%; line-height:1;">
+		inputFile path:"data_sorted.csv" staticData:"data_static.csv" separator:, maximportline:-1<br />
+		outputFile path:"data_imported.bin" format:bin outputInDirectory:false<br />
+		<br />
+		check noTimeDuplicate:0<br />
+		<br />
+		time key:DATE format:"%Y-%m-%d" min:2007-01-01 max:2016-01-01 epsilon:0.01 factor:DAY<br />
+		<br />
+		entity key:PLATE<br />
+		<br />
+		state key:JOBCODE<br />
+		state key:MAINT_TYPE<br />
+		state key:TYPE<br />
+		state key:DEFECT<br />
+		state key:TYPE;DEFECT<br />
+		<br />
+		scalar key:DISC<br />
+		<br />
+		event key:JOBCODE<br />
+		event key:JOBCODE;DEFECT;MAINT_TYPE<br />
+		<br />
+		static_state key:MODEL<br />
+		static_state key:TYPE<br />
+		static_state key:COLOR<br />
+		<br />
+	</div>
+</div>
+
+<p>In this example, the output of this import with be a single bin file : data_imported.bin.</p>
+
+<p>Following is the list of possible options on the import configuration file:</p>
+
+<ul>
+
+	<!-- ================== -->
+	<li><b>inputFile</b> : Define path and csv syntax of the input datasets.</li>
+	<ul>
+		<li><b>path</b> : Path to the dirty input csv file.</li>
+		<li><b>staticData</b> : (Optional) Path to the unformated input csv file with static data.</li>
+		<li><b>separator</b> : Csv column separator character.</li>
+		<li><b>maximportline</b> : (Optional) Maximum imported lines.</li>
+		<li><b>maximportentity</b> : (Optional) Maximum imported entities.</li>
+		<li><b>only</b> : (Optional) Path to a text file containing the entities to import (one id by row). If not
+			specified, all entities are imported.</li>
+		<li><b>minRecords</b> : (Optional) Only record entities with at least this amount of records.</li>
+		<li><b>maxRecords</b> : (Optional) Only record entities with at most this amount of records.</li>
+		<li><b>minDuration</b> : (Optional) Only record entities with a time difference between the last and first
+			records greater than the specified value.</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>outputFile</b> : Define path and format of the input dataset.</li>
+	<ul>
+		<li><b>path</b> : Path to the output file or output directory (if outputInDirectory:true)</li>
+		<li><b>format</b> : Output format. Can be "bin","evt" or "csv".</li>
+		<li><b>outputInDirectory</b> : If false (default), all the records will be saved in a single file. If true, the
+			record of each entity will be saved in a separate file, and a globale .sevt file will be defined.</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>filter</b> : (Optional, can have several) Filter on the record by value of a column.</li>
+	<ul>
+		<li><b>key</b> : Column name.</li>
+		<li><b>value</b> : Expected value.</li>
+		<li><b>reverse</b> : If false, only the record with the expected value are saved. If true, only the records with
+			a value different from the expected value are saved.</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>check</b> : Various checking on the data.</li>
+	<ul>
+		<li><b>noTimeDuplicate</b> : If true, make sure that no two records or a same entity have the same time.</li>
+		<li><b>allStaticData</b> : If true, each entity should have a row on the static dataset.</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>time</b> : Structure and format of the input time.</li>
+	<ul>
+		<li><b>key</b> : Name of the column representing the time.</li>
+		<li><b>format</b> : Format of the time. Can be "direct" (i.e. direct numerical value) or any format supported by
+			the <a href="http://en.cppreference.com/w/cpp/io/manip/get_time">std::time_get format</a>. </li>
+		<li><b>separateRecords</b> : If true, if check:noTimeDuplicate=false and if two records are at the same time,
+			the records will be shifted by epsilon time to they don't overlap.</li>
+		<li><b>factor</b> : Division factor to apply on the numerical time. If "DAY", the value will be 60*60*24 (i.e.
+			number of second in a day).</li>
+		<li><b>min</b> : Lower bound of the time for the dataset.</li>
+		<li><b>max</b> : Upper bound of the time for the dataset.</li>
+		<li><b>epsilon</b> : Very small numerical time added or subtracted to time record to make sure they don't
+			overlap.</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>entity</b> : Specify the column that contains the entity unique identifier.</li>
+	<ul>
+		<li><b>key</b> : Name of the column.</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>state</b> : Specify the column (or the set of column, separated by ";") to convert into a state.</li>
+	<ul>
+		<li><b>key</b> : Column names separated by ;</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>scalar</b> : Specify the column to convert into a state</li>
+	<ul>
+		<li><b>key</b> : Name of the column.</li>
+	</ul>
+
+
+	<!-- ================== -->
+	<li><b>event</b> : Specify the column (or the set of column, separated by ";") to convert into a state.</li>
+	<ul>
+		<li><b>key</b> : Column names separated by ;</li>
+	</ul>
+
+
+	<!-- ================== -->
+	<li><b>static_state</b> : Specify the column (or the set of column, separated by ";") from the static dataset to
+		convert into a state.</li>
+	<ul>
+		<li><b>key</b> : Column names separated by ;</li>
+	</ul>
+
+	<!-- ================== -->
+	<li><b>static_scalar</b> : Specify the column from the static dataset to convert into a scalar.</li>
+	<ul>
+		<li><b>key</b> : Name of the column.</li>
+	</ul>
+
+	<!-- ================== -->
+
+</ul>
+
+<p>Once a dataset is imported, it is strongly recommended to visualize it using the Event Viewer.
+	In case of large dataset, you can restrict the number of imported entities or the number of imported row to quickly
+	test your configuration file.
+	Finally, the honey importing tool work in a greedy way entity by entity.
+	This means that the importing tool can be used to import very large datasets (larger that your computer memory).</p>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>

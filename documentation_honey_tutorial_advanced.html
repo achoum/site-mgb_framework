@@ -1,0 +1,604 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/documentation.css">
+
+  <link rel="icon" type="image/png" href="image/icon.png">
+  <title>MGB Framework</title>
+
+  <!--<script src="js/lightbox-plus-jquery.min.js"></script>-->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bxslider/4.2.15/jquery.bxslider.min.js"></script>
+
+  <script>
+    (function (i, s, o, g, r, a, m) {
+      i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        (i[r].q = i[r].q || []).push(arguments)
+      }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+    })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+    ga('create', 'UA-70616847-1', 'auto');
+    ga('send', 'pageview');
+
+  </script>
+
+</head>
+
+<body>
+
+  <header class="header">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <a class="title" href="index.html"><span class="firstLetters">MGB</span> Framework</a>
+  </header><!-- header -->
+  <div class="content">
+
+
+    
+
+<div class="side" id="side">
+<ul>
+<li class='mainlevel'>Honey</li><ul><li class='sublevel'><a href='documentation_honey_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_honey_tutorial_beginner.html'>Tutorial | Beginner</a></li><li class='sublevel'><a href='documentation_honey_tutorial_intermediate.html'>Tutorial | Intermediate</a></li><li class='sublevel'><a class='selected' href='documentation_honey_tutorial_advanced.html'>Tutorial | Advanced</a></li><ul><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_advanced.html#execution_modes'>Execution modes</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_advanced.html#online'>Online streaming visualization</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_advanced.html#user_functions'>User defined functions</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_advanced.html#include'>Include external source</a><li class='subsublevel'><a class='subsublevel' href='documentation_honey_tutorial_advanced.html#recursion'>Function and Process recursion</a></ul><li class='sublevel'><a href='documentation_honey_importer.html'>Tutorial | Dirty CSV Importer</a></li><li class='sublevel'><a href='documentation_honey_tutorial_api.html'>Tutorial | API</a></li><li class='sublevel'><a href='documentation_honey_functions.html'>Function reference</a></li><li class='sublevel'><a href='documentation_honey_command_line_ref.html'>Command line reference</a></li><li class='sublevel'><a href='documentation_honey_examples.html'>[Outdated] Examples</a></li><li class='sublevel'><a href='documentation_honey_tutorial.html'>[Outdated] Tutorial</a></li></ul><li class='mainlevel'>Event Viewer</li><ul><li class='sublevel'><a href='documentation_eventviewer_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_eventviewer_tutorial.html'>Tutorial</a></li></ul><li class='mainlevel'>Titarl</li><ul><li class='sublevel'><a href='documentation_titarl_beginnersGuide.html'>Beginner guide</a></li><li class='sublevel'><a href='documentation_titarl_tutorial.html'>Tutorial</a></li><li class='sublevel'><a href='documentation_titarl_experimentManager.html'>Experiment manager</a></li></ul>
+</ul>
+</div> <!-- side -->
+<div class="text">
+<h1>Honey | Tutorial | Advanced</h1><p>
+	This last tutorial covers the more complex (but also more interesting) features of Honey.
+</p>
+
+<h2 id="execution_modes">Execution modes</h2>
+
+<p>
+	By default, Honey runs in <span class="cmd">static</span> mode.
+	The static mode suppose that the entire dataset can be loaded in memory.
+	This does not have any impact on the results of the program, but this allow Honey and some of its function to be
+	executed more efficiently.
+	When a honey program is executed in <span class="cmd">static</span> mode, each function is executed entirely (i.e.
+	on all the records) before the next functions.
+	Functions are executed in a topological ordering of the functions: If a first function requires the result of a
+	second function, this second function will be executed after the first one.
+	However, if two function are independent, they can be executed in any orders.
+	In addition, since Honey knows the interdependence between functions, intermediate results are only kept in memory
+	until Honey know their will not be used any more.
+</p>
+
+<p>
+	The mode of execution can be specified in the program with the <span class="cmd">@mode</span> command, or using the
+	<span class="cmd">--mode</span> command line option.
+</p>
+
+<p>
+	Honey second execution mode is the <span class="cmd">streaming</span> mode.
+	In the streaming mode, the dataset file are read and processed greedily record by record.
+	The streaming execution mode is significantly slower than the static mode.
+	However, Honey can process large datasets that would not fit in memory.
+</p>
+
+<p>
+	The last execution mode of Honey is the <span class="cmd">online</span> mode.
+	This mode is similar to the streaming mode, but it allows the processing of real time stream of data.
+	Note that Event Viewer can display real time stream of data.
+	Several honey functions are specific to this mode:
+</p>
+
+<ul>
+
+	<li><span class="cmd">tcpclient</span> creates a TCP client that will exchange record in the .evt format.</li>
+
+	<li><span class="cmd">tcpserver</span> creates a TCP server that will exchange record in the .evt format.</li>
+
+	<li><span class="cmd">keyboard</span> generates record according to the keyboard pressed keys.</li>
+
+	<li><span class="cmd">beep</span> emits a sound of the computer sound system.</li>
+
+</ul>
+
+<p>
+	The following example generates every 0.1 second a random record with a value uniformly sampled between 0 and 1.
+	The program also wait for the user to type commands on the console.
+	If the user type "plot", the programs emits a sound a save a scatter plot of the random signal.
+</p>
+
+<div class="example" style="vertical-align:top">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@mode online<br />
+		$a = tick 0.1<br />
+		$a = eq $a "rand"<br />
+		$k = keyboard<br />
+		$k = filter $k "key_plot"<br />
+		print $k every:true label:"Exporting plot"<br />
+		beep $k pitch:750<br />
+		plot $a trigger:$k file:random_TIME.svg
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/online.png">
+	</div>
+</div>
+
+<p>
+	Note that while that the current version of Honey does not run on multi-threads (this will be added in a future
+	version).
+</p>
+
+
+<h2 id="online">Online streaming visualization</h2>
+
+<p>
+	As you can see on the previous section, Honey can be used to process real time online stream of data.
+	In this section, and in the following video, we will see how to connect a third party program that generates signal,
+	honey to processed this signal, and Event Viewer to visualise this signal (and the processed features) in real time.
+</p>
+
+<p>
+	This example illustrates how you can use Honey and Event Viewer on realtime scenario.
+	The only requirment is for the input (and eventually control) data to be streamed in .evt format (e.g. "{time}
+	{channel name} {value}").
+	This format is simple enought so that it can be generated in any language very easily
+	(e.g. <span class="cmd">cout &lt;&lt; evt.time &lt;&lt; " " &lt;&lt; evt.name &lt;&lt; " " &lt;&lt; evt.value
+		&lt;&lt; endl;</span> in C++).
+</p>
+
+<p>
+	This solution is organized as follow:
+</p>
+
+<ul>
+
+	<li>
+		First, a Python script that, every 0.5 seconds, generates three records with three random values.
+		The records are printed in .evt format on the console.
+		The random value are sampled according to a Perlin Noise function (just to be nice to look at).
+		Note that the Python script does not need to write the "time" field of the .evt.
+		Instead Honey will write it automatically.
+	</li>
+
+	<li>
+		The linux tool "nc" is used to connect the python script to a TCP server on the port 2002.
+		Using telnet you can connect to this server an watch the flow of records.
+		Not that you can use this script on Window after having installing Cygwin.
+	</li>
+
+	<li>
+		A honey program connects (with the <span class="cmd">tcpclient</span> function to the socat server) to the nc
+		server on port 2002
+		, grab the records, computes a moving average and broadcast the result as tcp server (with the command <span
+			class="cmd">tcpserver</span>) on port 2003.
+		Here again you can use a telnet client to watch the flow of records.
+	</li>
+
+	<li>
+		Event Viewer connects to the Honey tcp server on port 2003, grab the records and display them in real time.
+		Event viewer is configured to "follow" the signal i.e. new records will always be shown on screen.
+		Note that is you were connecting Event Viewer directly to the nc server on port 2002, you would see the records
+		without the processed values.
+	</li>
+
+</ul>
+
+<p>The Honey program. The Honey program and all the others files are available in the
+	"Honey/bin/example/realtimeVisualization" directory of Honey.
+</p>
+
+<p>
+	The Bash should be started first (it will call the Python script), followed by the Honey program, followed by Event
+	Viewer.
+	To connect Event Viewer to the server, right click on the preconfigured "Connection" component, and select "Start".
+	By default, Event Viewer will not "follow" the signal. You can enable it by clicking on "Display/Follow signal".
+	Finally, the display window of Event Viewer might be to large (or to small when you start it).
+	The easied solution to adjust the window is to use to well so to configure to display to cover around a minute of
+	signal.
+</p>
+
+<div class="example">
+	<div class="title">
+		Honey program : processSignal.hny
+	</div>
+	<div class="content">
+		@mode online<br />
+		<br />
+		$empty = echo "empty"<br />
+		$a = tcpclient $empty ip:127.0.0.1 port:2002<br />
+		$b = sma $a 10<br />
+		$b += $a<br />
+		tcpserver $b port:2003
+	</div>
+</div>
+
+<p>
+	Here is a screen shot of what you should see in Event Viewer after a couple of seconds.
+</p>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/realtime.png">
+	</div>
+</div>
+
+
+<h2 id="user_functions">User defined functions</h2>
+
+<p>
+	Users can define new functions using the <span class="cmd">function</span> and <span class="cmd">endfunction</span>
+	commands.
+</p>
+
+<p>
+	The following example shows the definition and use of a function.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@data input:"data/vital.csv" output:"result.evt"<br />
+		$all = echo #.*<br />
+		<br />
+		function h $a %w<br />
+		<span class="tab"></span> $r = sma $a %w<br />
+		<span class="tab"></span> return $r<br />
+		endfunction<br />
+		<br />
+		$res = call h $all 2<br />
+		save $res file:%output
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/functions.png">
+	</div>
+</div>
+
+<p>
+	User defined functions support signal and non-signal non named parameters.
+	Functions can return signal-values with the <span class="cmd">return</span> commands.
+	A function can have several <span class="cmd">return</span> commands: In this case, the returned signal-variable
+	will be the aggregation of all the results.
+	Currently, functions can only return signal parameters.
+</p>
+
+<p>
+	<span class="cmd">return</span> outside of a function body has a different signification, and it is only used for
+	the Honey API.
+</p>
+
+<p>
+	When compiled, functions are integrated into the flow network without overload.
+</p>
+
+<p>
+	By default, functions cannot access variables defined outside of their scope.
+	For a function to access a variable outside of its score, you can use the <span class="cmd">global</span> keyword.
+	The <span class="cmd">global</span> keyword works both on signal and non-signal variables.
+</p>
+
+<p>
+	Here is an example of use of <span class="cmd">global</span>.
+</p>
+
+<div class="example">
+	<div class="title">
+		Example
+	</div>
+	<div class="content">
+		@data input:"data/vital.csv" output:"result.evt"<br />
+		$all = echo #.*<br />
+		<br />
+		function h<br />
+		<span class="tab"></span> global $a<br />
+		<span class="tab"></span> global %w<br />
+		<span class="tab"></span> global $result<br />
+		<span class="tab"></span> $result = sma $a %w<br />
+		endfunction<br />
+		<br />
+		$a = $all<br />
+		set %w 2<br />
+		call h<br />
+		<br />
+		save $result file:%output
+		<br />
+	</div>
+</div>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/functions.png">
+	</div>
+</div>
+
+<h2 id="include">Include external source</h2>
+
+<p>
+	It is often a good idea to organize complex programs into several files.
+	You can use the command <span class="cmd">include</span> to include a source file into another one.
+</p>
+
+<div class="example">
+	<div class="title">
+		part1.hny
+	</div>
+	<div class="content">
+		include "part2.hny"<br />
+		call h
+	</div>
+</div>
+
+<div class="example">
+	<div class="title">
+		part2.hny
+	</div>
+	<div class="content">
+		function h<br />
+		endfunction<br />
+	</div>
+</div>
+
+
+<h2 id="recursion">Function and Process recursion</h2>
+
+<p>
+	So far, all our honey programs were compiled into acyclic flow network.
+	However, Honey actually supports cycles in flow network.
+	Such Honey program is called "flow recursive" programs.
+</p>
+
+<p>
+	With the use of user defined functions, Honey programs can also contain recursion in their definition (i.e. a
+	function calling itself).
+	Such Honey program is called "definition recursive" programs.
+</p>
+
+<p>
+	Note that a "flow recursive" is necessarily "definition recursive". And vice versa.
+</p>
+
+<p>
+	The difference between the two types of recursion is illustrated in the following example:
+	Suppose that we want to write an program that generates a record of name "a" and of value 10 every 20 time units.
+	Suppose also, that 1 time unit after such record, we want the program to generate another record of the same name
+	and of value 9.
+	Again, 1 time unit after this second type record, we want the program to generate a record of the same name and of
+	value 8.
+	An so one until the value reaches the value 0.
+	The following plot shows the expected result.
+</p>
+
+<div class="figure" style="margin:0px;display:inline-block;">
+	<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+		<img src="documentation/honey/pictures/recursion.png">
+	</div>
+</div>
+
+<p>
+	We can imagine several programs that would produce this result:
+</p>
+
+<ol>
+
+	<li>
+		<p>
+			To generate a tick every 20 seconds;
+			and use nine <span class="cmd">delay</span> functions and nine <span class="cmd">eq</span>
+			functions to generate two nice following events of decreasing value.
+		</p>
+		<p>
+			This program would be as follow:
+		</p>
+
+		<div class="example">
+			<div class="content">
+				@data input:"data/100.evt" output:"result/100.evt"<br />
+				<br />
+				$a = tick 20<br />
+				$a = eq $a 10<br />
+				$a = rename $a "a"<br />
+				<br />
+				$result += $a<br />
+				<br />
+				$a = delay $a 1<br />
+				$a = eq $a 9<br />
+				$a = rename $a "a"<br />
+				$result += $a<br />
+				<br />
+				$a = delay $a 1<br />
+				$a = eq $a 8<br />
+				$a = rename $a "a"<br />
+				$result += $a<br />
+				<br />
+				$a = delay $a 1<br />
+				$a = eq $a 7<br />
+				$a = rename $a "a"<br />
+				$result += $a<br />
+				<br />
+				# ... 6 more times ...<br />
+				<br />
+				save $result file:%output<br />
+			</div>
+		</div>
+
+		<div class="figure" style="margin:0px;display:inline-block;">
+			<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+				<img src="documentation/honey/pictures/recursion_v3.png">
+			</div>
+		</div>
+
+		<p>
+			Note that if we execute the script in static or streaming mode, we need to provide a dataset to define to
+			active of time.
+			The dataset "100.evt" contains two records: One at time 0, and one at time 100.
+		</p>
+
+	</li>
+
+	<li>
+		<p>
+			Write a definition recursive program that would recursively call a function ten time.
+			At each call, the function would call a <span class="cmd">delay</span> and a <span class="cmd">eq</span>
+			functions.
+			The resulting flow network would be exactly similar to the flow network of the first solution, but the
+			program would be smaller.
+		</p>
+
+		<p>
+			This program would be as follow:
+		</p>
+
+		<div class="example">
+			<div class="content">
+				@data input:"data/100.evt" output:"result/100.evt"<br />
+				<br />
+				$a = tick 20<br />
+				$a = eq $a 10<br />
+				$a = rename $a "a"<br />
+				<br />
+				$result += $a<br />
+				<br />
+				function h $b %i<br />
+				<span class="tab"></span> global $result<br />
+				<span class="tab"></span> $b = delay $b 1<br />
+				<span class="tab"></span> $b = eq $b %i<br />
+				<span class="tab"></span> $b = rename $b "a"<br />
+				<span class="tab"></span> $result += $b<br />
+				<br />
+				<span class="tab"></span> set %i =%i,1,-<br />
+				<span class="tab"></span> if =%i,0,><br />
+				<span class="tab"></span> <span class="tab"></span> call h $b %i<br />
+				<span class="tab"></span> endif<br />
+				endfunction<br />
+				<br />
+				call h $a 9<br />
+				<br />
+				save $result file:%output
+			</div>
+		</div>
+
+		<div class="figure" style="margin:0px;display:inline-block;">
+			<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+				<img src="documentation/honey/pictures/recursion_v4.png">
+			</div>
+		</div>
+
+		<p>
+			Note that the <span class="cmd">if</span> is evaluated to build the flow network; but it is not a function
+			of the network.
+			<span class="cmd">if</span> evaluates one non-signal argument, and if the numerical value of this argument
+			of >= than 0.5, the commands until the next <span class="cmd">endif</span> are compiled.
+			Otherwise, all the commands between the <span class="cmd">if</span> and the next matching <span
+				class="cmd">endif</span> are skiped.
+			Note that you can encapsulate <span class="cmd">if</span>s.
+		</p>
+
+	<li>
+
+		<p>
+			Finally, the last solution is to create a flow network with a cycle.
+			The record would be carried in the cycle and its value would be reduced by one at each turn.
+			Finally, when it value would reach 0, the record would be filtered.
+		</p>
+
+		<p>
+			This program would be as follow:
+		</p>
+
+		<div class="example">
+			<div class="content">
+				@data input:"data/100.evt" output:"result/100.evt"<br />
+				<br />
+				@mode streaming<br />
+				<br />
+				$a = tick 20<br />
+				$a = eq $a 10<br />
+				$a = rename $a "a"<br />
+				<br />
+				recursive $x<br />
+				<br />
+				$x += $a<br />
+				<br />
+				$b = delay $x 1<br />
+				$b = eq $b "value,1,-"<br />
+				$b = passIfFast $b minValue:0<br />
+				$b = rename $b "a" keepAll:true<br />
+				<br />
+				$x += $b<br />
+				<br />
+				$result += echo $x<br />
+				<br />
+				save $result file:%output
+			</div>
+		</div>
+
+		<div class="figure" style="margin:0px;display:inline-block;">
+			<div class="content" style="background-color: white;padding:10px;border:1px solid grey;">
+				<img src="documentation/honey/pictures/recursion_v2.png">
+			</div>
+		</div>
+
+		<p>
+			The only specificity of the program is the line <span class="cmd">recursive $x</span>.
+			This line specify that the variable <span class="cmd">$x</span> is recursive.
+			Every record sent into a recursive variable will received by all function receiving this variable,
+			event if the function is called before the variable assignation.
+		</p>
+
+		<p>
+			Variables can be defined recursive inside of a function, of globally in the program.
+			The current version of Honey does not support for recursive variable to be <span class="cmd">global</span>.
+			In addition, recursive variables are only supported yet in streaming and online execution mode.
+		</p>
+
+	</li>
+
+</ol>
+</div> <!-- text -->
+<br style="clear:left;" />
+
+<script>
+$( window ).scroll(function()
+    {
+    v = Math.max( 0 , $(window).scrollTop() - 100 );
+    if( v != $( "#side" ).css('margin-top') )
+        $( "#side" ).css('margin-top', v );
+    });
+</script>
+
+
+
+  </div> <!-- content -->
+  <div class="footer">
+    <div class="leftBand1"></div>
+    <div class="rightBand1"></div>
+    <div class="list">
+      <table>
+        <tr>
+          <td>
+            <a href="about.html">About</a><br />
+            <a href="termsOfUse.html">Terms of Use</a><br />
+            <a href="documentation_honey_beginnersGuide.html">Documentation</a><br />
+          </td>
+          <td>
+            <a href="download.html">Download</a><br />
+          </td>
+        </tr>
+      </table>
+      © 2015 <a href="" target="_blank">Mathieu Guillame-Bert</a>, Carnegie Mellon University,
+      Pennsylvania.
+    </div>
+
+  </div><!-- footer -->
+</body>
+
+</html>
